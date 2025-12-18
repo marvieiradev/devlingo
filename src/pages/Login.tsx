@@ -1,4 +1,4 @@
-//import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -8,27 +8,27 @@ const Login = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  //const { login } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    //setError(null);
+    setError(null);
 
-    //setLoading(true);
+    setLoading(true);
 
-    /*try {
-        await login(email);   
-        
-        const from = location.state?.from?.pathname || "/";
-        navigate(from, { replace: true });
+    try {
+      await login(email);
+
+      const from = location.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
     } catch (err) {
       setError("Falha ao entrar. Verifique suas credenciais.");
     } finally {
       setLoading(false);
-    }*/
+    }
   };
 
   return (
