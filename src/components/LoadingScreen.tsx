@@ -1,5 +1,5 @@
 import DevlingoChar from "@/assets/images/loader.png";
-import "../assets/styles/global.css";
+import "../styles/global.css";
 
 interface LoadingScreenProps {
   isFadingOut?: boolean;
