@@ -1,11 +1,12 @@
 import { useAuth } from "@/contexts/AuthContext";
+import supabase from "@/services/supabase";
 import { useEffect, useState } from "react";
 
 export interface UserProfile {
   id: string;
   name: string;
   email: string;
-  totalXP: number;
+  total_xp: number;
 }
 
 export const STORAGE_KEY = "devlingo:auth:user";
@@ -29,15 +30,24 @@ export const useUserProfile = () => {
       setLoading(true);
 
       try {
-        const userProfile: UserProfile = {
-          id: "user-123",
-          name: user.name,
-          email: user.email,
-          totalXP: user.totalXP,
-        };
+        console.log("user.id:", user.id);
 
-        setProfile(userProfile);
-        setError(null);
+        const { data, error } = await supabase
+          .from("user_profiles")
+          .select("id, name, email, total_xp")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        console.log("userProfile:", data);
+
+        if (error) {
+          console.log("Erro ao buscar perfil do usuário:", error);
+          setError("Erro ao buscar perfil do usuário.");
+          setProfile(null);
+        } else {
+          setProfile(data);
+          setError(null);
+        }
       } catch (err) {
         setError("Falha ao carregar perfil do usuário.");
         setProfile(null);
@@ -45,7 +55,7 @@ export const useUserProfile = () => {
         setLoading(false);
       }
     };
-    
+
     fetchUserProfile();
   }, [user]);
 
