@@ -24,7 +24,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <IoDiamond className="w-5 h-5 text-purple-600" strokeWidth={2} />
             <span className="font-semibold">
-              {loading ? "..." : profile?.totalXP}
+              {loading ? "..." : profile?.total_xp}
             </span>
           </div>
 

@@ -7,9 +7,15 @@ interface LessonModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedUnitId?: number;
+  completed: boolean;
 }
 
-const LessonModal = ({ isOpen, onClose, selectedUnitId }: LessonModalProps) => {
+const LessonModal = ({
+  isOpen,
+  onClose,
+  selectedUnitId,
+  completed,
+}: LessonModalProps) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
@@ -38,7 +44,9 @@ const LessonModal = ({ isOpen, onClose, selectedUnitId }: LessonModalProps) => {
               <h3 className="text-2xl font-bold tracking-wide text-center">
                 Escolha uma lição
               </h3>
-              <p className="mt-2 text-center text-white/90">Teste</p>
+              <p className="mt-2 text-center text-white/90">
+                Unindade {selectedUnitId}
+              </p>
             </div>
             <button
               type="button"
@@ -69,9 +77,11 @@ const LessonModal = ({ isOpen, onClose, selectedUnitId }: LessonModalProps) => {
                       +{lesson.xpReward} XP
                     </p>
                   </div>
-                  <span className="inline-flex items-center justify-center bg-green-500 rounded-full w-7 h-7">
-                    <Check className="w-4 h-4 text-white" />
-                  </span>
+                  {completed && (
+                    <span className="inline-flex items-center justify-center bg-green-500 rounded-full w-7 h-7">
+                      <Check className="w-4 h-4 text-white" />
+                    </span>
+                  )}
                 </div>
               </button>
             ))}
