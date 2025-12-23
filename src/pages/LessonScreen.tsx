@@ -5,9 +5,13 @@ import { IoHeart } from "react-icons/io5"; // Ícone de coração para as vidas
 import { useNavigate, useParams } from "react-router-dom"; // Hooks para navegação e para pegar parâmetros da URL
 import { lessonsData } from "@/mocks/lessonsData"; // Dados mocados (falsos) das lições
 import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp"; // Componente de pop-up para feedback
+import { useAuth } from "@/contexts/AuthContext";
+import { saveLessonsScore } from "@/services/saveLessonsScore";
 
 // Definição do componente LessonScreen
 const LessonScreen = () => {
+  const { user } = useAuth();
+
   // --- HOOKS ---
   // Hook para navegar entre as páginas da aplicação
   const navigate = useNavigate();
@@ -19,8 +23,12 @@ const LessonScreen = () => {
   // Estes são os "cérebros" do componente. Eles guardam informações que mudam com o tempo.
   const [selected, setSelected] = useState<number | null>(null); // Guarda o índice da opção que o usuário selecionou. Começa como nulo.
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null); // Guarda se a resposta selecionada está correta (true) ou errada (false).
-  const [showResult, setShowResult] = useState(false); // Controla se o resultado (certo/errado) deve ser mostrado.
   const [showFeedbackPopUp, setShowFeedbackPopUp] = useState(false); // Controla a exibição do pop-up de feedback.
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Índice da pergunta atual na lição.
+
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0); // Guarda o índice da resposta correta.
+  const [wrongAnswers, setWrongAnswers] = useState<number>(0); // Guarda o índice da resposta errada.
+  const [lives, setLives] = useState<number>(3); // Guarda o número de vidas restantes do usuário.
 
   // --- LÓGICA DE DADOS ---
   // Procura no nosso array de lições (lessonsData) pela lição que tenha o 'id' igual ao 'lessonId' da URL.
@@ -28,6 +36,7 @@ const LessonScreen = () => {
 
   // Se a lição não for encontrada, mostra uma mensagem e um botão para voltar.
   if (!lesson) {
+    console.warn("[Lesson] lesson not found", { lessonId });
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
@@ -45,15 +54,13 @@ const LessonScreen = () => {
 
   // --- VARIÁVEIS DA LIÇÃO ATUAL ---
   // ATENÇÃO: Por enquanto, estamos pegando apenas a PRIMEIRA pergunta da lição.
-  const currentQuestion = lesson.questions[0];
+  const currentQuestion = lesson.questions[currentQuestionIndex];
   const totalQuestions = lesson.questions.length; // Total de perguntas na lição.
-  const lives = 3; // Número de vidas (fixo por enquanto).
-  // Calcula o progresso. ATENÇÃO: Como só temos 1 pergunta, o progresso será fixo.
-  const progress = (1 / totalQuestions) * 100;
+  const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
 
   // --- FUNÇÕES ---
   // Função chamada quando o usuário clica no botão "VERIFICAR".
-  const handleCheck = () => {
+  const handleCheck = async () => {
     // Se nenhuma opção foi selecionada, não faz nada.
     if (selected === null) return;
 
@@ -62,8 +69,106 @@ const LessonScreen = () => {
 
     // Atualiza os estados com base no resultado.
     setIsCorrect(isAnswerCorrect); // Guarda se acertou ou errou.
-    setShowResult(true); // Mostra o resultado.
-    setShowFeedbackPopUp(true); // Ativa o pop-up de feedback.
+
+    if (isAnswerCorrect) {
+      const nextCorrect = correctAnswers + 1;
+      setCorrectAnswers(nextCorrect);
+      setShowFeedbackPopUp(true);
+      return;
+    }
+
+    const nextWrong = wrongAnswers + 1;
+    const nextLives = lives - 1;
+    setWrongAnswers(nextWrong);
+    setLives(nextLives);
+
+    if (nextWrong >= 3 && nextLives <= 0) {
+      setShowFeedbackPopUp(false);
+
+      navigate("/lesson-failure/", {
+        state: {
+          lessonId: lesson.id,
+          correctAnswers: correctAnswers,
+          wrongAnswers: nextWrong,
+          totalQuestions,
+        },
+      });
+      return;
+    }
+
+    setShowFeedbackPopUp(true);
+  };
+
+  const handleContinue = async () => {
+    console.log("[Lesson] handleContinue", {
+      currentQuestionIndex,
+      counters: { correctAnswers, wrongAnswers, lives },
+      totalQuestions,
+    });
+    setShowFeedbackPopUp(false); // Fecha o pop-up de feedback.
+
+    if (currentQuestionIndex < totalQuestions - 1) {
+      setCurrentQuestionIndex((prev) => {
+        const next = prev + 1;
+        console.log("[Lesson] next question", {
+          nextIndex: next,
+          totalQuestions,
+        });
+        return next;
+      }); // Vai para a próxima pergunta.
+      setSelected(null); // Reseta a seleção.
+      setIsCorrect(null); // Reseta o resultado.
+    } else {
+      // respondeu todas as perguntas, salva a pontuação
+      if (correctAnswers === totalQuestions) {
+        if (user?.id) {
+          try {
+            const result = await saveLessonsScore({
+              userId: user?.id,
+              lessonId: lesson.id,
+              correctAnswers: correctAnswers,
+              wrongAnswers: wrongAnswers,
+              xpEarned: lesson.xpReward,
+            }); // Salva a pontuação da lição
+
+            console.debug("[Lesson] saved score successfully", result);
+          } catch (error) {
+            console.error("[Lesson] error saving score/navigating:", error);
+          }
+
+          // Liçao finalizada, vai pra tela de sucesso
+          console.debug("[Lesson] navigating to success", {
+            lessonId: lesson.id,
+            xpEarned: lesson.xpReward,
+            accuracy: 100,
+          });
+          navigate("/lesson-success/", {
+            state: {
+              lessonId: lesson.id,
+              xpEarned: lesson.xpReward,
+              accuracy: 100,
+            },
+          });
+        }
+      } else {
+        console.debug("[Lesson] navigating to failure", {
+          lessonId: lesson.id,
+          correctAnswers,
+          wrongAnswers,
+          totalQuestions,
+        });
+
+        // Liçao finalizada, vai pra tela de resumo com resultados
+        navigate("/lesson-failure/", {
+          state: {
+            lessonId: lesson.id,
+            correctAnswers: correctAnswers,
+            wrongAnswers: wrongAnswers,
+            totalQuestions,
+          },
+        });
+      }
+    }
   };
 
   // --- RENDERIZAÇÃO (O que aparece na tela) ---
@@ -153,7 +258,11 @@ const LessonScreen = () => {
       </div>
 
       {/* Componente do Pop-up de Feedback (sua visibilidade é controlada internamente ou por um contexto) */}
-      <AnswerFeedbackPopUp />
+      <AnswerFeedbackPopUp
+        open={showFeedbackPopUp}
+        type={isCorrect ? "correct" : "incorrect"}
+        onContinue={handleContinue}
+      />
     </div>
   );
 };

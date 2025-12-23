@@ -1,21 +1,33 @@
 import Char from "@/assets/images/char.png";
 import { Check, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface LessonsFailureProps {
-  correct?: number;
-  incorrect?: number;
-  accuracyPercent?: number;
-  onBack?: () => void;
-  onRetry?: () => void;
+interface LessonFailureState {
+  lessonId: string;
+  correctAnswers: number;
+  wrongAnswers: number;
+  totalQuestions: number;
 }
 
-const LessonFailureScreen = ({
-  correct = 0,
-  incorrect = 3,
-  accuracyPercent = 0,
-  onBack,
-  onRetry,
-}: LessonsFailureProps) => {
+const LessonFailureScreen = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { lessonId, correctAnswers, wrongAnswers, totalQuestions } =
+    (location.state as LessonFailureState) || {};
+
+  const accuracyPercent =
+    totalQuestions > 0
+      ? Math.round((correctAnswers / totalQuestions) * 100)
+      : 0;
+
+  const handleTryAgain = () => {
+    if (lessonId) {
+      navigate(`/lesson/${lessonId}`, { replace: true });
+    } else {
+      navigate("/");
+    }
+  };
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="w-full max-w-2xl px-4 sm:px-0">
@@ -46,7 +58,9 @@ const LessonFailureScreen = ({
               </span>
               <span className="text-gray-800">Respostas corretas</span>
             </div>
-            <span className="text-green-600 font-bold text-lg">{correct}</span>
+            <span className="text-green-600 font-bold text-lg">
+              {correctAnswers}
+            </span>
           </div>
 
           {/* Incorreta */}
@@ -57,7 +71,9 @@ const LessonFailureScreen = ({
               </span>
               <span className="text-gray-800">Respostas incorretas</span>
             </div>
-            <span className="text-red-600 font-bold text-lg">{incorrect}</span>
+            <span className="text-red-600 font-bold text-lg">
+              {wrongAnswers}
+            </span>
           </div>
 
           {/* Divider */}
@@ -74,14 +90,14 @@ const LessonFailureScreen = ({
         <div className="mt-8 flex items-center justify-center gap-4">
           <button
             type="button"
-            onClick={onBack}
+            onClick={() => navigate("/")}
             className="px-8 py-3 rounded-2xl bg-gray-200 text-gray-800 font-bold cursor-pointer"
           >
             VOLTAR
           </button>
           <button
             type="button"
-            onClick={onRetry}
+            onClick={handleTryAgain}
             className="px-8 py-3 rounded-2xl bg-[#32CD32] hover:bg-[#2fb32f] text-white font-extrabold cursor-pointer"
           >
             TENTAR NOVAMENTE

@@ -1,17 +1,18 @@
 import Char from "@/assets/images/char.png";
 import { Gem, Target } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface LessonSuccessScreenProps {
-  totalXP?: number;
-  accuracyPercent?: number;
-  onContinue?: () => void;
+interface LessonSuccessState {
+  xpEarned?: number;
+  accuracy?: number;
 }
 
-const LessonSuccessScreen = ({
-  totalXP = 10,
-  accuracyPercent = 100,
-  onContinue,
-}: LessonSuccessScreenProps) => {
+const LessonSuccessScreen = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { xpEarned, accuracy } = (location.state as LessonSuccessState) || {};
+
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="flex flex-col items-center">
@@ -30,14 +31,14 @@ const LessonSuccessScreen = ({
         </h1>
 
         {/* Cards de resumo */}
-        <div className="mt-10 flex items-stretch gap-6">
+        <div className="mt-10 flex flex-col items-stretch gap-6 md:flex-row">
           {/* XP total */}
           <div className="rounded-2xl border-2 border-[#f7eaa6] bg-[#fff8cc] px-6 py-5 min-w-[220px]">
             <p className="text-gray-700 text-sm">TOTAL DE XP</p>
             <div className="mt-3 flex items-center gap-3">
               <Gem className="w-6 h-6 text-purple-600" />
               <span className="text-2xl font-bold text-[#f59e0b]">
-                {totalXP}
+                {xpEarned}
               </span>
             </div>
           </div>
@@ -48,7 +49,7 @@ const LessonSuccessScreen = ({
             <div className="mt-3 flex items-center gap-3">
               <Target className="w-6 h-6 text-[#22c55e]" />
               <span className="text-2xl font-bold text-[#16a34a]">
-                {accuracyPercent}%
+                {accuracy}%
               </span>
             </div>
           </div>
@@ -58,7 +59,7 @@ const LessonSuccessScreen = ({
         <div className="mt-12">
           <button
             type="button"
-            onClick={onContinue}
+            onClick={() => navigate("/")}
             className="px-10 py-4 rounded-2xl bg-[#32CD32] hover:bg-[#2fb32f] text-white font-extrabold shadow-md cursor-pointer"
           >
             CONTINUAR

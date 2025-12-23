@@ -15,19 +15,18 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    setError(null);
-
-    setLoading(true);
-
     try {
-      await login(email);
+      const { error } = await login(email, senha);
+
+      if (error) {
+        console.log("Erro no login:", error);
+        return;
+      }
 
       const from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
     } catch (err) {
-      setError("Falha ao entrar. Verifique suas credenciais.");
-    } finally {
-      setLoading(false);
+      console.error("Erro ao fazer login:", err);
     }
   };
 
