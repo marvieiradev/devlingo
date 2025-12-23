@@ -1,5 +1,6 @@
 import GrayStar from "@/assets/images/gray-star.png";
 import GreenStar from "@/assets/images/green-star.png";
+import BlueStar from "@/assets/images/blue-star.png";
 
 interface LessonNodeProps {
   status: "locked" | "completed" | "available";
@@ -22,7 +23,7 @@ const LessonNode = ({ status, onClick }: LessonNodeProps) => {
         `}
       >
         <img
-          src={isCompleted ? GreenStar : GrayStar}
+          src={isCompleted ? GreenStar : isLocked ? GrayStar : BlueStar}
           alt={
             isLocked
               ? "Lição bloqueada"
