@@ -31,7 +31,6 @@ const LessonFailureScreen = () => {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="w-full max-w-2xl px-4 sm:px-0">
-        {/* Mascote */}
         <div className="flex justify-center">
           <img
             src={Char}
@@ -40,7 +39,6 @@ const LessonFailureScreen = () => {
           />
         </div>
 
-        {/* Título e subtítulo */}
         <h1 className="mt-6 text-4xl font-extrabold text-gray-900 text-center">
           Você quase conseguiu!
         </h1>
@@ -48,9 +46,7 @@ const LessonFailureScreen = () => {
           Continue praticando para melhorar
         </p>
 
-        {/* Card de resultados */}
         <div className="mt-8 rounded-3xl bg-white border border-gray-200 shadow-sm p-6">
-          {/* Correta */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100">
@@ -63,7 +59,6 @@ const LessonFailureScreen = () => {
             </span>
           </div>
 
-          {/* Incorreta */}
           <div className="mt-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100">
@@ -76,17 +71,14 @@ const LessonFailureScreen = () => {
             </span>
           </div>
 
-          {/* Divider */}
           <div className="my-6 h-px w-full bg-gray-200" />
 
-          {/* Precisão */}
           <div className="flex items-center justify-between">
             <span className="text-gray-600">Precisão</span>
             <span className="text-gray-900 font-bold">{accuracyPercent}%</span>
           </div>
         </div>
 
-        {/* Ações */}
         <div className="mt-8 flex items-center justify-center gap-4">
           <button
             type="button"

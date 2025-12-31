@@ -5,8 +5,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +17,6 @@ const Login = () => {
       const { error } = await login(email, senha);
 
       if (error) {
-        console.log("Erro no login:", error);
         return;
       }
 
@@ -41,7 +38,6 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label className="text-gray-700">Email</label>
             <input
@@ -54,7 +50,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Senha */}
           <div className="flex flex-col gap-1">
             <label className="text-gray-700">Senha</label>
             <input
@@ -67,7 +62,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Botão */}
           <button
             type="submit"
             className="w-full py-3 bg-blue-400 hover:bg-indigo-400 transition rounded-lg text-white font-semibold text-center cursor-pointer"
@@ -76,7 +70,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="flex items-center gap-3 my-6">
           <span className="flex-1 h-px bg-gray-300" />
           <span className="text-gray-500 text-sm">ou</span>

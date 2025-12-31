@@ -32,13 +32,10 @@ const LessonModal = ({
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center">
-      {/* Overlay escuro */}
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
-      {/* Card modal */}
       <div className="relative z-50 w-full max-w-2xl mx-4">
         <div className="rounded-3xl bg-blue-400 text-white shadow-2xl">
-          {/* Cabeçalho */}
           <div className="px-8 pt-8 pb-4 flex items-start justify-between">
             <div className="w-full">
               <h3 className="text-2xl font-bold tracking-wide text-center">
@@ -58,7 +55,6 @@ const LessonModal = ({
             </button>
           </div>
 
-          {/* Conteúdo */}
           <div className="px-8 pb-10">
             {unitLessons.map((lesson) => (
               <button
@@ -88,7 +84,6 @@ const LessonModal = ({
           </div>
         </div>
 
-        {/* Coruja no canto inferior direito, fora do card */}
         <div className="absolute -bottom-8 -right-6 w-24 h-24 sm:w-28 sm:h-28">
           <img
             src={Char}

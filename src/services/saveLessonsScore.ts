@@ -18,7 +18,6 @@ export type SaveLessonScoreResult = {
   scoreId?: string;
 };
 
-// Insere um novo registro em lesson_scores
 export async function insertLessonScore(
   params: SaveLessonScoreParams
 ): Promise<SaveLessonScoreResult> {
@@ -43,7 +42,6 @@ export async function insertLessonScore(
     }
 
     const id = data?.id as string;
-    console.log("[insertLessonScore] sucesso", { id });
 
     return { data: { scoreId: id }, error: null };
   } catch (err) {
@@ -53,7 +51,6 @@ export async function insertLessonScore(
   }
 }
 
-// Atualiza um registro existente em lesson_scores
 export async function updateLessonScore(
   params: SaveLessonScoreParams,
   existingScoreId: string
@@ -77,7 +74,6 @@ export async function updateLessonScore(
     }
 
     const id = data?.id as string;
-    console.log("[updateLessonScore] sucesso", { id });
 
     return { data: { scoreId: id }, error: null };
   } catch (err) {
@@ -87,7 +83,6 @@ export async function updateLessonScore(
   }
 }
 
-// Decide entre insert e update com base na existência de scoreId
 export async function saveLessonsScore(
   params: SaveLessonScoreParams
 ): Promise<SaveLessonScoreResult> {
@@ -128,8 +123,6 @@ export async function saveLessonsScore(
       );
       return { data: null, error: profileError as Error };
     }
-
-    console.log("salvando novo xp");
 
     const newTotalXP =
       (profile?.total_xp || 0) + (params.xpEarned - previousXP);

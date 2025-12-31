@@ -13,13 +13,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("AuthProvider mounted, setting up auth state change listener");
-
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Auth event:", event, "Session:", session);
-
       setUser(session?.user ?? null);
 
       if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
@@ -40,14 +36,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     email: string,
     password: string
   ): Promise<{ error: Error | null }> => {
-    console.log("fazendo login");
-
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email.trim().toLowerCase(),
       password,
     });
-
-    console.log("data", data);
 
     if (error) {
       console.error("Erro ao fazer login:", error);

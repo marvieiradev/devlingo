@@ -26,8 +26,6 @@ const Signup = () => {
       const { error } = await signUp(name, email, senha);
       if (error) {
         console.error("[SignUp] Erro ao criar conta:", error);
-      } else {
-        console.log("[SignUp] Conta criada com sucesso!");
       }
     } catch (error) {
       console.error("[SignUp] Exceção não tratada:", error);

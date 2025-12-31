@@ -41,7 +41,6 @@ export const useUserProfile = () => {
         console.log("userProfile:", data);
 
         if (error) {
-          console.log("Erro ao buscar perfil do usuário:", error);
           setError("Erro ao buscar perfil do usuário.");
           setProfile(null);
         } else {

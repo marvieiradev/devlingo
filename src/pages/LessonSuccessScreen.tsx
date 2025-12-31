@@ -16,7 +16,6 @@ const LessonSuccessScreen = () => {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="flex flex-col items-center">
-        {/* Mascote */}
         <div>
           <img
             src={Char}
@@ -25,14 +24,11 @@ const LessonSuccessScreen = () => {
           />
         </div>
 
-        {/* Título */}
         <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold text-[#f7b500] text-center">
           Lição concluída!
         </h1>
 
-        {/* Cards de resumo */}
         <div className="mt-10 flex flex-col items-stretch gap-6 md:flex-row">
-          {/* XP total */}
           <div className="rounded-2xl border-2 border-[#f7eaa6] bg-[#fff8cc] px-6 py-5 min-w-[220px]">
             <p className="text-gray-700 text-sm">TOTAL DE XP</p>
             <div className="mt-3 flex items-center gap-3">
@@ -43,7 +39,6 @@ const LessonSuccessScreen = () => {
             </div>
           </div>
 
-          {/* Precisão */}
           <div className="rounded-2xl border-2 border-[#b7f1c8] bg-[#eafff2] px-6 py-5 min-w-[220px]">
             <p className="text-gray-700 text-sm">BOA</p>
             <div className="mt-3 flex items-center gap-3">
@@ -55,7 +50,6 @@ const LessonSuccessScreen = () => {
           </div>
         </div>
 
-        {/* Botão continuar */}
         <div className="mt-12">
           <button
             type="button"

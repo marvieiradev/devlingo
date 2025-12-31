@@ -11,7 +11,6 @@ const Header = () => {
   return (
     <header className="w-full bg-white shadow-sm">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        {/* Left: Course badge */}
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center justify-center rounded-md bg-yellow-400 text-black text-sm font-bold w-7 h-7 select-none">
             JS
@@ -19,7 +18,6 @@ const Header = () => {
           <div className="h-6 w-px bg-gray-200" />
         </div>
 
-        {/* Right: Status + logout */}
         <div className="flex items-center gap-5 text-gray-800">
           <div className="flex items-center gap-2">
             <IoDiamond className="w-5 h-5 text-purple-600" strokeWidth={2} />
@@ -39,7 +37,7 @@ const Header = () => {
               onClick={logout}
               className="flex items-center gap-2 text-blue-400 hover:text-indigo-400 font-medium"
             >
-              <LogOut className="w-5 h-5" />
+              <LogOut className="w-5 h-5 cursor-pointer" />
               <span>Sair</span>
             </button>
           )}

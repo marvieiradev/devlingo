@@ -12,7 +12,6 @@ export interface UseCompletedLessonsResult {
   refetch: () => Promise<void>;
 }
 
-// Busca as lições completadas na tabela lesson_scores para o usuário atual
 export function useCompletedLessons(): UseCompletedLessonsResult {
   const { user } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,14 +34,12 @@ export function useCompletedLessons(): UseCompletedLessonsResult {
         setLoading(true);
         setError(null);
 
-        // Seleciona lesson_id distintos do usuário
         const { data, error: qError } = await supabase
           .from("lesson_scores")
           .select("lesson_id")
           .eq("user_id", userId);
 
         if (qError) {
-          console.error("[useCompletedLessons] erro ao buscar lições", qError);
           setError(qError as unknown as Error);
           setCompletedLessons([]);
           return;
@@ -51,12 +48,6 @@ export function useCompletedLessons(): UseCompletedLessonsResult {
         const ids = Array.from(
           new Set((data ?? []).map((row: any) => row.lesson_id as string))
         );
-
-        console.log("[useCompletedLessons] lições carregadas", {
-          userId,
-          count: ids.length,
-          ids,
-        });
 
         setCompletedLessons(ids);
       } catch (err) {
