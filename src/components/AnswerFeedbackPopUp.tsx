@@ -42,7 +42,7 @@ const AnswerFeedbackPopUp = ({
                 size={36}
               />
             </span>
-            <span className="font-semibold text-2xl">
+            <span className="font-semibold  text-xl sm:text-2xl">
               {isSuccess ? "Na mosca!" : "Incorreto!"}
             </span>
           </div>
@@ -50,7 +50,7 @@ const AnswerFeedbackPopUp = ({
           <button
             type="button"
             onClick={onContinue}
-            className={`shrink-0 px-6 sm:px-8 py-3 rounded-xl text-white font-semibold ${btn} shadow`}
+            className={`shrink-0 px-4 sm:px-8 py-3 rounded-xl text-white font-semibold ${btn} shadow`}
           >
             Continuar
           </button>
