@@ -1,4 +1,4 @@
-import DevlingoChar from "@/assets/images/loader.png";
+import Char from "@/assets/images/loader.svg";
 import "../styles/global.css";
 
 interface LoadingScreenProps {
@@ -14,7 +14,7 @@ const LoadingScreen = ({ isFadingOut }: LoadingScreenProps) => {
     >
       <div>
         <img
-          src={DevlingoChar}
+          src={Char}
           alt="Devlingo loader"
           className="w-36 h-36 object-contain animate-float"
         />

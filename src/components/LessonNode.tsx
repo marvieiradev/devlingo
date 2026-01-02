@@ -1,6 +1,6 @@
-import GrayStar from "@/assets/images/gray-star.png";
-import GreenStar from "@/assets/images/green-star.png";
-import BlueStar from "@/assets/images/blue-star.png";
+import GrayStar from "@/assets/images/gray-star.svg";
+import GreenStar from "@/assets/images/green-star.svg";
+import BlueStar from "@/assets/images/blue-star.svg";
 
 interface LessonNodeProps {
   status: "locked" | "completed" | "available";

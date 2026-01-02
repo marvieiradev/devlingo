@@ -1,4 +1,4 @@
-import Char from "@/assets/images/char.png";
+import Char from "@/assets/images/char.svg";
 import { Check, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 

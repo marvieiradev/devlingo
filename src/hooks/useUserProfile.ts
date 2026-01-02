@@ -30,15 +30,11 @@ export const useUserProfile = () => {
       setLoading(true);
 
       try {
-        console.log("user.id:", user.id);
-
         const { data, error } = await supabase
           .from("user_profiles")
           .select("id, name, email, total_xp")
           .eq("id", user.id)
           .maybeSingle();
-
-        console.log("userProfile:", data);
 
         if (error) {
           setError("Erro ao buscar perfil do usuário.");

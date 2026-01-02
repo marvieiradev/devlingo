@@ -1,4 +1,4 @@
-import Char from "@/assets/images/char.png";
+import Char from "@/assets/images/char.svg";
 import LessonNode from "./LessonNode";
 import { useState } from "react";
 import LessonModal from "./LessonModal";
@@ -11,8 +11,6 @@ const LessonsPath = () => {
   const [hasCompleted, setHasCompleted] = useState(false);
 
   const { completedLessons } = useCompletedLessons();
-
-  console.debug("[LessonsPath] completedLessons", completedLessons);
 
   const mapUnitToLessonId = (unitId: number): string | null => {
     const lesson = lessonsData.find((l) => l.unitId === unitId);
@@ -61,7 +59,7 @@ const LessonsPath = () => {
           onClick={() => handleUnitClick(1, getUnitStatus(1))}
         />
 
-        <div style={{ transform: "translateX(-40px)" }}>
+        <div style={{ transform: "translateX(-60px)" }}>
           <LessonNode
             status={getUnitStatus(2)}
             onClick={() => handleUnitClick(2, getUnitStatus(2))}
@@ -70,7 +68,7 @@ const LessonsPath = () => {
 
         <div
           className="relative w-full flex justify-center"
-          style={{ transform: "translateX(-60px)" }}
+          style={{ transform: "translateX(-80px)" }}
         >
           <LessonNode
             status={getUnitStatus(3)}
@@ -99,6 +97,20 @@ const LessonsPath = () => {
           <LessonNode
             status={getUnitStatus(5)}
             onClick={() => handleUnitClick(5, getUnitStatus(5))}
+          />
+        </div>
+
+        <div style={{ transform: "translateX(0px)" }}>
+          <LessonNode
+            status={getUnitStatus(6)}
+            onClick={() => handleUnitClick(6, getUnitStatus(6))}
+          />
+        </div>
+
+        <div style={{ transform: "translateX(-40px)" }}>
+          <LessonNode
+            status={getUnitStatus(7)}
+            onClick={() => handleUnitClick(7, getUnitStatus(7))}
           />
         </div>
       </div>

@@ -9,7 +9,7 @@ const Header = () => {
   const { profile, loading } = useUserProfile();
 
   return (
-    <header className="w-full bg-white shadow-sm">
+    <header className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center justify-center rounded-md bg-yellow-400 text-black text-sm font-bold w-7 h-7 select-none">
@@ -35,9 +35,9 @@ const Header = () => {
             <button
               type="button"
               onClick={logout}
-              className="flex items-center gap-2 text-blue-400 hover:text-indigo-400 font-medium"
+              className="flex items-center gap-2 text-blue-400 hover:text-indigo-400 font-medium cursor-pointer"
             >
-              <LogOut className="w-5 h-5 cursor-pointer" />
+              <LogOut className="w-5 h-5" />
               <span>Sair</span>
             </button>
           )}

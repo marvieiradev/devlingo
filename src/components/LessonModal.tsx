@@ -1,5 +1,5 @@
 import { X, Check } from "lucide-react";
-import Char from "@/assets/images/char.png";
+import Char from "@/assets/images/char.svg";
 import { lessonsData } from "@/mocks/lessonsData";
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const LessonModal = ({
                 Escolha uma lição
               </h3>
               <p className="mt-2 text-center text-white/90">
-                Unindade {selectedUnitId}
+                Unidade {selectedUnitId}
               </p>
             </div>
             <button
@@ -74,8 +74,8 @@ const LessonModal = ({
                     </p>
                   </div>
                   {completed && (
-                    <span className="inline-flex items-center justify-center bg-green-500 rounded-full w-7 h-7">
-                      <Check className="w-4 h-4 text-white" />
+                    <span className="inline-flex items-center justify-center bg-green-500 rounded-full w-7 h-7 p-2">
+                      <Check className="w-5 h-5 text-white font-semibold" />
                     </span>
                   )}
                 </div>
@@ -84,7 +84,7 @@ const LessonModal = ({
           </div>
         </div>
 
-        <div className="absolute -bottom-8 -right-6 w-24 h-24 sm:w-28 sm:h-28">
+        <div className="absolute -bottom-4 -right-6 w-28 h-28 sm:w-32 sm:h-32">
           <img
             src={Char}
             alt="Mascote"
