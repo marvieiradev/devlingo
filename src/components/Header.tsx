@@ -2,19 +2,19 @@ import { LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { IoDiamond, IoHeart } from "react-icons/io5";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import IconTecnology from "./IconTecnology";
+import { useParams } from "react-router";
 
 const Header = () => {
+  const params = useParams();
   const { logout, isAuthenticated } = useAuth();
-
   const { profile, loading } = useUserProfile();
 
   return (
     <header className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center justify-center rounded-md bg-yellow-400 text-black text-sm font-bold w-7 h-7 select-none">
-            JS
-          </span>
+          <IconTecnology tecnology={params.id!} />
           <div className="h-6 w-px bg-gray-200" />
         </div>
 

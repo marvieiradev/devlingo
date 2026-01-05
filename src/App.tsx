@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import LessonScreen from "./pages/LessonScreen";
 import LessonSuccessScreen from "./pages/LessonSuccessScreen";
 import LessonFailureScreen from "./pages/LessonFailureScreen";
+import Lessons from "./pages/Lessons";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/:id"
+            element={
+              <ProtectedRoute>
+                <Lessons />
               </ProtectedRoute>
             }
           />

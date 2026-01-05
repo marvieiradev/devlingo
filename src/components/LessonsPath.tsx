@@ -5,7 +5,11 @@ import LessonModal from "./LessonModal";
 import { useCompletedLessons } from "@/hooks/useCompletedLessons";
 import { lessonsData } from "@/mocks/lessonsData";
 
-const LessonsPath = () => {
+//import { htmlLessonsData } from "@/mocks/htmlLessonsData";
+//import { cssLessonsData } from "@/mocks/cssLessonsData";
+//import { jsLessonsData } from "@/mocks/jsLessonsData";
+
+const LessonsPath = ({ module }: { module: string }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasCompleted, setHasCompleted] = useState(false);
@@ -14,6 +18,15 @@ const LessonsPath = () => {
 
   const mapUnitToLessonId = (unitId: number): string | null => {
     const lesson = lessonsData.find((l) => l.unitId === unitId);
+    /*let lesson;
+    switch (module) {
+      case "html":
+        lesson = htmlLessonsData.find((l) => l.unitId === unitId);
+      case "css":
+        lesson = cssLessonsData.find((l) => l.unitId === unitId);
+      case "js":
+        lesson = jsLessonsData.find((l) => l.unitId === unitId);
+    }*/
     const id = lesson?.id ?? null;
     return id;
   };

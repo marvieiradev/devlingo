@@ -1,11 +1,10 @@
 import Header from "@/components/Header";
-import LessonsPath from "@/components/LessonsPath";
+import LessonsModule from "@/components/LessonsModules";
 
 export const Home = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
-      <LessonsPath />
+      <LessonsModule />
     </div>
   );
 };
