@@ -75,7 +75,7 @@ function App() {
           />
 
           <Route
-            path="/lesson/:lessonId"
+            path=":moduleId/lesson/:lessonId"
             element={
               <ProtectedRoute>
                 <LessonScreen />

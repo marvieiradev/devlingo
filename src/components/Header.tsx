@@ -10,6 +10,15 @@ const Header = () => {
   const { logout, isAuthenticated } = useAuth();
   const { profile, loading } = useUserProfile();
 
+  const module =
+    params.id === "html"
+      ? "HTML"
+      : params.id === "css"
+      ? "CSS"
+      : params.id === "js"
+      ? "JavaScript"
+      : "";
+
   return (
     <header className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -52,7 +61,7 @@ const Header = () => {
                 Começar unidade
               </p>
               <h2 className="mt-1 text-2xl sm:text-3xl font-bold tracking-wide">
-                Fundamentos JavaScript
+                Fundamentos {module}
               </h2>
             </div>
           </div>

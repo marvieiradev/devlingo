@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { IoHeart } from "react-icons/io5";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
 import { lessonsData } from "@/mocks/lessonsData";
 import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp";
 import { useAuth } from "@/contexts/AuthContext";
@@ -11,7 +12,7 @@ const LessonScreen = () => {
   const { user } = useAuth();
 
   const navigate = useNavigate();
-  const { lessonId } = useParams();
+  const { moduleId, lessonId } = useParams();
 
   const [selected, setSelected] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -22,9 +23,14 @@ const LessonScreen = () => {
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [lives, setLives] = useState<number>(3);
 
-  const lesson = lessonsData.find((lesson) => lesson.id === lessonId);
+  const lessonModule = lessonsData.find((m) => m.id === moduleId);
+  const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
 
   if (!lesson) {
+    console.warn("[Lesson] lesson not found", { lessonId });
+    return;
+  }
+  /*if (!lesson) {
     console.warn("[Lesson] lesson not found", { lessonId });
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -39,7 +45,7 @@ const LessonScreen = () => {
         </div>
       </div>
     );
-  }
+  }*/
 
   const currentQuestion = lesson.questions[currentQuestionIndex];
   const totalQuestions = lesson.questions.length;
@@ -157,7 +163,7 @@ const LessonScreen = () => {
           <button
             className="text-gray-600 hover:text-gray-800 cursor-pointer"
             aria-label="Fechar"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             <X className="w-6 h-6" />
           </button>

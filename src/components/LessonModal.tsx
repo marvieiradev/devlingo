@@ -1,12 +1,13 @@
 import { X, Check } from "lucide-react";
 import Char from "@/assets/images/char.svg";
-import { lessonsData } from "@/mocks/lessonsData";
 import { useNavigate } from "react-router-dom";
+import { lessonsData } from "@/mocks/lessonsData";
 
 interface LessonModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedUnitId?: number;
+  selectedModuleId?: string;
   completed: boolean;
 }
 
@@ -14,19 +15,25 @@ const LessonModal = ({
   isOpen,
   onClose,
   selectedUnitId,
+  selectedModuleId,
   completed,
 }: LessonModalProps) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
 
-  const unitLessons = lessonsData.filter(
-    (lesson) => lesson.unitId === selectedUnitId
+  const selectedModule = lessonsData.find(
+    (module) => module.id === selectedModuleId
   );
 
-  const handleStartLesson = (lessonId: string) => {
-    navigate(`/lesson/${lessonId}`);
+  const unitLessons = selectedModule
+    ? selectedModule.lessons.filter(
+        (lesson) => lesson.unitId === selectedUnitId
+      )
+    : [];
 
+  const handleStartLesson = (lessonId: string) => {
+    navigate(`/${selectedModuleId}/lesson/${lessonId}`);
     onClose();
   };
 
