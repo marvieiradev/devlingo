@@ -9,6 +9,7 @@ import LessonScreen from "./pages/LessonScreen";
 import LessonSuccessScreen from "./pages/LessonSuccessScreen";
 import LessonFailureScreen from "./pages/LessonFailureScreen";
 import Lessons from "./pages/Lessons";
+import Welcome from "./pages/Welcome";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/welcome" element={<Welcome />} />
 
           <Route
             path="/"
