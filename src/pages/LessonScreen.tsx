@@ -157,9 +157,9 @@ const LessonScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white max-w-3xl mx-auto">
       <div className="sticky top-0 z-30 bg-white">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <button
             className="text-gray-600 hover:text-gray-800 cursor-pointer"
             aria-label="Fechar"

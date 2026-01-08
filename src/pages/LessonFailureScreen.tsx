@@ -29,7 +29,7 @@ const LessonFailureScreen = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center max-w-3xl mx-auto">
       <div className="w-full max-w-2xl px-4 sm:px-0">
         <div className="flex justify-center">
           <img

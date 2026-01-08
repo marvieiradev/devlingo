@@ -4,7 +4,7 @@ import Char from "@/assets/images/char.svg";
 export const Welcome = () => {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden max-w-3xl mx-auto">
       <div className="w-full">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <div className="flex align-center w-full h-28 sm:h-32">

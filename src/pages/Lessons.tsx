@@ -6,9 +6,13 @@ export const Lessons = () => {
   const params = useParams();
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Header />
-      <LessonsPath module={params.id!} />
+    <div className="min-h-screen max-w-3xl mx-auto">
+      <div className="sticky top-0 z-30 bg-transparent">
+        <Header />
+      </div>
+      <div className="overflow-x-hidden">
+        <LessonsPath module={params.id!} />
+      </div>
     </div>
   );
 };

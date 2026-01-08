@@ -5,6 +5,26 @@
   font-family: "Roboto", sans-serif;
 }
 
+@theme {
+  --color-default: oklch(0.97 0.02 264.29);
+
+  --color-primary: oklch(70.7% 0.165 254.624);
+  --color-primary-dark: oklch(54.6% 0.245 262.881);
+  --color-primary-light: oklch(80.9% 0.105 251.813);
+
+  /*--color-secondary: oklch(0.25 0.32 264.29);
+  --color-secondary-dark: oklch(0.98 0.05 261.59);
+  --color-secondary-light: oklch(0.98 0.05 261.59);*/
+
+  --color-success: oklch(72.3% 0.219 149.579);
+  --color-success-dark: oklch(62.7% 0.194 149.214);
+  --color-success-light: oklch(87.1% 0.15 154.449);
+
+  --color-error: oklch(63.7% 0.237 25.331);
+  --color-error-dark: oklch(57.7% 0.245 27.325);
+  --color-error-light: oklch(80.8% 0.114 19.571);
+}
+
 @layer utilities {
   @keyframes float {
     0%,

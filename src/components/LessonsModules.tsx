@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import IconTecnology from "./IconTecnology";
+import Button from "./Button";
 
 export const LessonsModules = () => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ export const LessonsModules = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden max-w-3xl mx-auto">
       <div className="w-full">
         <div className="mx-auto max-w-6xl px-4">
           <div

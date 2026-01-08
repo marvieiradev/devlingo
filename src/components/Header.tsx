@@ -20,11 +20,11 @@ const Header = () => {
       : "";
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-default max-w-3xl mx-auto">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <IconTecnology tecnology={params.id!} />
-          <div className="h-6 w-px bg-gray-200" />
+          <div className="h-6 w-px bg-default" />
         </div>
 
         <div className="flex items-center gap-5 text-gray-800">
@@ -55,12 +55,12 @@ const Header = () => {
 
       <div className="w-full">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mt-4 rounded-xl bg-blue-400 text-white shadow-lg">
-            <div className="px-6 py-6">
+          <div className="mt-4 rounded-xl bg-primary text-default border-b-5 border-primary-dark shadow-lg">
+            <div className="px-6 py-6 gap-2">
               <p className="uppercase text-xs tracking-widest opacity-90">
                 Começar unidade
               </p>
-              <h2 className="mt-1 text-2xl sm:text-3xl font-bold tracking-wide">
+              <h2 className="mt-1 text-xl sm:text-2xl font-bold tracking-wide">
                 Fundamentos {module}
               </h2>
             </div>

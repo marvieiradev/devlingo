@@ -8,7 +8,7 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ isFadingOut }: LoadingScreenProps) => {
   return (
     <div
-      className={`fixed inset-0 bg-blue-400 flex flex-col items-center justify-center ${
+      className={`fixed inset-0 bg-primary flex flex-col items-center justify-center ${
         isFadingOut ? "animate-fadeOut" : ""
       }`}
     >
@@ -20,7 +20,7 @@ const LoadingScreen = ({ isFadingOut }: LoadingScreenProps) => {
         />
       </div>
 
-      <h1 className="text-white text-5xl font-bold mt-12 tracking-wider">
+      <h1 className="text-default text-5xl font-bold mt-12 tracking-wider">
         Devlingo
       </h1>
     </div>

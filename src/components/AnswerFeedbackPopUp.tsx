@@ -1,4 +1,5 @@
 import { Check, X } from "lucide-react";
+import Button from "./Button";
 
 type FeedbackType = "correct" | "incorrect";
 
@@ -17,17 +18,14 @@ const AnswerFeedbackPopUp = ({
 
   const isSuccess = type === "correct";
 
-  const bg = isSuccess ? "bg-green-100" : "bg-red-100";
-  const border = isSuccess ? "border-green-300" : "border-red-300";
-  const text = isSuccess ? "text-green-900" : "text-red-900";
-  const btn = isSuccess
-    ? "bg-green-500 hover:bg-green-600"
-    : "bg-red-500 hover:bg-red-600";
+  const bg = isSuccess ? "bg-success-light/50" : "bg-error-light/50";
+  const border = isSuccess ? "border-success" : "border-error";
+  const text = isSuccess ? "text-success-dark" : "text-error-dark";
   const Icon = isSuccess ? Check : X;
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-50"
+      className="fixed inset-x-0 bottom-4 z-50"
       role="status"
       aria-live="polite"
     >
@@ -36,24 +34,24 @@ const AnswerFeedbackPopUp = ({
           className={`w-full ${bg} ${text} border ${border} rounded-2xl shadow-xl px-6 py-4 flex items-center justify-between gap-6`}
         >
           <div className="flex items-center gap-4">
-            <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow">
-              <Icon
-                className={`${isSuccess ? "text-green-500" : "text-red-500"}`}
-                size={36}
-              />
+            <span
+              className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-default ${
+                isSuccess ? "bg-success" : "bg-error"
+              }`}
+            >
+              <Icon size={20} />
             </span>
             <span className="font-semibold  text-xl sm:text-2xl">
               {isSuccess ? "Na mosca!" : "Incorreto!"}
             </span>
           </div>
 
-          <button
-            type="button"
-            onClick={onContinue}
-            className={`shrink-0 px-4 sm:px-8 py-3 rounded-xl text-white font-semibold ${btn} shadow`}
-          >
-            Continuar
-          </button>
+          <div onClick={onContinue}>
+            <Button
+              variant={isSuccess ? "success" : "error"}
+              text={isSuccess ? "Continuar" : "Ok!"}
+            />
+          </div>
         </div>
       </div>
     </div>
