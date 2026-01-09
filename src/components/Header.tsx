@@ -1,14 +1,15 @@
 import { LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { IoDiamond, IoHeart } from "react-icons/io5";
-import { useUserProfile } from "@/hooks/useUserProfile";
+//import { useUserProfile } from "@/hooks/useUserProfile";
 import IconTecnology from "./IconTecnology";
 import { useParams } from "react-router";
+import { PiBatteryChargingFill, PiFireFill } from "react-icons/pi";
+import { TbDiamondFilled } from "react-icons/tb";
 
 const Header = () => {
   const params = useParams();
   const { logout, isAuthenticated } = useAuth();
-  const { profile, loading } = useUserProfile();
+  //const { profile, loading } = useUserProfile();
 
   const module =
     params.id === "html"
@@ -29,15 +30,21 @@ const Header = () => {
 
         <div className="flex items-center gap-5 text-gray-800">
           <div className="flex items-center gap-2">
-            <IoDiamond className="w-5 h-5 text-purple-600" strokeWidth={2} />
-            <span className="font-semibold">
-              {loading ? "..." : profile?.total_xp}
+            <PiFireFill className="w-6 h-6 sm:w-8 sm:h-8 text-fire-icon" />
+            <span className="font-semibold text-fire-icon">∞</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <TbDiamondFilled className="w-6 h-6 sm:w-8 sm:h-8 text-diamond-icon" />
+            <span className="font-semibold text-diamond-icon">
+              99
+              {/*loading ? "..." : profile?.total_xp*/}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <IoHeart className="w-5 h-5 text-red-600" strokeWidth={2} />
-            <span className="font-semibold">∞</span>
+            <PiBatteryChargingFill className="w-6 h-6 sm:w-8 sm:h-8 text-batery-icon" />
+            <span className="font-semibold text-batery-icon">∞</span>
           </div>
 
           {isAuthenticated && (

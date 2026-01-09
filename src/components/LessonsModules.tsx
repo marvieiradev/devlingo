@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import IconTecnology from "./IconTecnology";
-import Button from "./Button";
 
 export const LessonsModules = () => {
   const navigate = useNavigate();

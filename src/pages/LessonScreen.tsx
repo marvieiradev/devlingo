@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { IoHeart } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { lessonsData } from "@/mocks/lessonsData";
 import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp";
 import { useAuth } from "@/contexts/AuthContext";
 import { saveLessonsScore } from "@/services/saveLessonsScore";
+import { PiBatteryChargingFill } from "react-icons/pi";
 
 const LessonScreen = () => {
   const { user } = useAuth();
@@ -157,11 +157,11 @@ const LessonScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white max-w-3xl mx-auto">
-      <div className="sticky top-0 z-30 bg-white">
+    <div className="min-h-screen bg-default max-w-3xl mx-auto">
+      <div className="sticky top-0 z-30 bg-default">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <button
-            className="text-gray-600 hover:text-gray-800 cursor-pointer"
+            className="text-gray-700 hover:text-gray-800 cursor-pointer"
             aria-label="Fechar"
             onClick={() => navigate(-1)}
           >
@@ -169,23 +169,23 @@ const LessonScreen = () => {
           </button>
 
           <div className="flex-1 px-6">
-            <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-4 w-full bg-primary-light/30 rounded-full overflow-hidden">
               <div
-                className={`h-full bg-blue-400`}
+                className={`h-full bg-primary transition-all duration-500`}
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-[#EF4444]">
-            <IoHeart className="w-5 h-5" />
-            <span className="text-gray-800">{lives}</span>
+          <div className="flex items-center gap-2 text-batery-icon">
+            <PiBatteryChargingFill className="w-6 h-6 sm:w-8 sm:h-8 " />
+            <span className="font-semibold">{lives}</span>
           </div>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        <h1 className="text-xl md:text-3xl font-bold text-gray-900 mb-8">
           {currentQuestion.question}
         </h1>
 
@@ -198,7 +198,7 @@ const LessonScreen = () => {
                 onClick={() => setSelected(idx)}
                 className={`w-full text-left rounded-2xl border transition shadow-sm p-4 flex items-center justify-between ${
                   isSelected
-                    ? "bg-blue-50 border-blue-400 ring-2 ring-blue-300"
+                    ? "bg-primary-light/15 border-primary ring-2 ring-primary"
                     : "bg-white border-gray-300 hover:bg-gray-50"
                 }`}
               >
@@ -215,7 +215,7 @@ const LessonScreen = () => {
           </button>
 
           <button
-            className={`px-6 py-3 rounded-xl bg-green-500 text-white font-bold cursor-pointer ${
+            className={`px-6 py-3 rounded-xl bg-success text-white font-bold cursor-pointer ${
               selected === null ? "opacity-50" : ""
             }`}
             disabled={selected === null}

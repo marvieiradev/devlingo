@@ -8,6 +8,10 @@
 @theme {
   --color-default: oklch(0.97 0.02 264.29);
 
+  --color-foreground: oklch(37.3% 0.034 259.733);
+  --color-foreground-dark: oklch(21% 0.034 264.665);
+  --color-foreground-light: oklch(55.1% 0.027 264.364);
+
   --color-primary: oklch(70.7% 0.165 254.624);
   --color-primary-dark: oklch(54.6% 0.245 262.881);
   --color-primary-light: oklch(80.9% 0.105 251.813);
@@ -23,6 +27,16 @@
   --color-error: oklch(63.7% 0.237 25.331);
   --color-error-dark: oklch(57.7% 0.245 27.325);
   --color-error-light: oklch(80.8% 0.114 19.571);
+
+  --color-warning: oklch(81.2% 0.23 91.176);
+  --color-warning-dark: oklch(70.5% 0.234 89.761);
+  --color-warning-light: oklch(90.3% 0.15 94.588);
+
+  --color-batery-icon: oklch(71.2% 0.194 13.428);
+  --color-xp-icon: oklch(85.5% 0.19 79.21);
+  --color-fire-icon: oklch(75% 0.183 55.934);
+  --color-diamond-icon: oklch(67.3% 0.182 276.935);
+  --color-time-icon: oklch(80% 0.12 264.29);
 }
 
 @layer utilities {
