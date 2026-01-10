@@ -11,6 +11,7 @@
   --color-foreground: oklch(37.3% 0.034 259.733);
   --color-foreground-dark: oklch(21% 0.034 264.665);
   --color-foreground-light: oklch(55.1% 0.027 264.364);
+  --color-foreground-extralight: oklch(87.2% 0.01 258.338);
 
   --color-primary: oklch(70.7% 0.165 254.624);
   --color-primary-dark: oklch(54.6% 0.245 262.881);
@@ -32,7 +33,7 @@
   --color-warning-dark: oklch(70.5% 0.234 89.761);
   --color-warning-light: oklch(90.3% 0.15 94.588);
 
-  --color-batery-icon: oklch(71.2% 0.194 13.428);
+  --color-batery-icon: oklch(0.7748 0.1669 345.5);
   --color-xp-icon: oklch(85.5% 0.19 79.21);
   --color-fire-icon: oklch(75% 0.183 55.934);
   --color-diamond-icon: oklch(67.3% 0.182 276.935);

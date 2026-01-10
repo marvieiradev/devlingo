@@ -7,6 +7,7 @@ import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp";
 import { useAuth } from "@/contexts/AuthContext";
 import { saveLessonsScore } from "@/services/saveLessonsScore";
 import { PiBatteryChargingFill } from "react-icons/pi";
+import Button from "@/components/Button";
 
 const LessonScreen = () => {
   const { user } = useAuth();
@@ -161,7 +162,7 @@ const LessonScreen = () => {
       <div className="sticky top-0 z-30 bg-default">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <button
-            className="text-gray-700 hover:text-gray-800 cursor-pointer"
+            className="text-foreground hover:text-foreground-dark cursor-pointer"
             aria-label="Fechar"
             onClick={() => navigate(-1)}
           >
@@ -185,7 +186,7 @@ const LessonScreen = () => {
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-xl md:text-3xl font-bold text-gray-900 mb-8">
+        <h1 className="text-xl md:text-3xl font-bold text-foreground-dark mb-8">
           {currentQuestion.question}
         </h1>
 
@@ -198,31 +199,28 @@ const LessonScreen = () => {
                 onClick={() => setSelected(idx)}
                 className={`w-full text-left rounded-2xl border transition shadow-sm p-4 flex items-center justify-between ${
                   isSelected
-                    ? "bg-primary-light/15 border-primary ring-2 ring-primary"
-                    : "bg-white border-gray-300 hover:bg-gray-50"
+                    ? "bg-primary-light/15 border-2 border-primary border-b-4"
+                    : "bg-default  border-2 border-foreground-extralight hover:bg-foreground-extralight/50 border-b-4"
                 }`}
               >
-                <span className="text-gray-900">{label}</span>
-                <span className="text-gray-500 text-sm">{idx + 1}</span>
+                <span className="text-foreground-dark">{label}</span>
+                <span className="text-foreground-light text-sm">{idx + 1}</span>
               </button>
             );
           })}
         </div>
 
         <div className="mt-8 flex items-center justify-between">
-          <button className="px-5 py-3 rounded-xl bg-gray-200 text-gray-800 font-semibold cursor-pointer">
-            PULAR
-          </button>
+          <div>
+            <Button variant="disabled" text="PULAR" />
+          </div>
 
-          <button
-            className={`px-6 py-3 rounded-xl bg-success text-white font-bold cursor-pointer ${
-              selected === null ? "opacity-50" : ""
-            }`}
-            disabled={selected === null}
+          <div
+            className={selected === null ? "opacity-50" : ""}
             onClick={handleCheck}
           >
-            VERIFICAR
-          </button>
+            <Button variant="primary" text="VERIFICAR" />
+          </div>
         </div>
       </div>
 

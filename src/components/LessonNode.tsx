@@ -1,15 +1,25 @@
-import GrayStar from "@/assets/images/gray-star.svg";
-import GreenStar from "@/assets/images/green-star.svg";
-import BlueStar from "@/assets/images/blue-star.svg";
+import StarCompleted from "@/assets/images/star-completed.svg";
+import StarEnabled from "@/assets/images/star-enabled.svg";
+import StarDisabled from "@/assets/images/star-disabled.svg";
+
+import GoalCompleted from "@/assets/images/goal-completed.svg";
+import GoalEnabled from "@/assets/images/goal-enabled.svg";
+import GoalDisabled from "@/assets/images/goal-disabled.svg";
 
 interface LessonNodeProps {
   status: "locked" | "completed" | "available";
   onClick?: () => void;
+  type: "star" | "trophy";
 }
 
-const LessonNode = ({ status, onClick }: LessonNodeProps) => {
+const LessonNode = ({ status, onClick, type }: LessonNodeProps) => {
   const isLocked = status === "locked";
   const isCompleted = status === "completed";
+  const isStar = type === "star";
+
+  const nodeLocked = isStar ? StarDisabled : GoalDisabled;
+  const nodeEnabled = isStar ? StarEnabled : GoalEnabled;
+  const nodeCompleted = isStar ? StarCompleted : GoalCompleted;
 
   return (
     <div className="relative flex flex-col items-center">
@@ -23,7 +33,9 @@ const LessonNode = ({ status, onClick }: LessonNodeProps) => {
         `}
       >
         <img
-          src={isCompleted ? GreenStar : isLocked ? GrayStar : BlueStar}
+          src={
+            isCompleted ? nodeCompleted : isLocked ? nodeLocked : nodeEnabled
+          }
           alt={
             isLocked
               ? "Lição bloqueada"
@@ -31,7 +43,7 @@ const LessonNode = ({ status, onClick }: LessonNodeProps) => {
               ? "Lição completada"
               : "Lição disponível"
           }
-          className="w-20 h-20 object-contain drop-shadow-lg"
+          className="w-18 h-18 object-contain drop-shadow-lg"
         />
       </button>
     </div>

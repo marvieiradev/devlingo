@@ -22,6 +22,11 @@ export const Button = ({
       variant =
         "bg-error border-error-dark text-default hover:border-error hover:bg-error-dark";
       break;
+
+    case "disabled":
+      variant =
+        "bg-foreground-extralight border-foreground-light/50 text-foreground-light/50 cursor-not-allowed";
+      break;
   }
   return (
     <div

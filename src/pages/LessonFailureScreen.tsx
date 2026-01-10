@@ -39,7 +39,7 @@ const LessonFailureScreen = () => {
           />
         </div>
 
-        <h1 className="mt-6 text-4xl font-extrabold text-gray-900 text-center">
+        <h1 className="mt-6 text-4xl font-extrabold text-foreground-dark text-center">
           Você quase conseguiu!
         </h1>
         <p className="mt-2 text-center text-gray-500">
@@ -75,7 +75,9 @@ const LessonFailureScreen = () => {
 
           <div className="flex items-center justify-between">
             <span className="text-gray-600">Precisão</span>
-            <span className="text-gray-900 font-bold">{accuracyPercent}%</span>
+            <span className="text-foreground-dark font-bold">
+              {accuracyPercent}%
+            </span>
           </div>
         </div>
 

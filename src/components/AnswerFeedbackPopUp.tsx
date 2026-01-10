@@ -25,28 +25,35 @@ const AnswerFeedbackPopUp = ({
 
   return (
     <div
-      className="fixed inset-x-0 bottom-4 z-50"
+      className="fixed inset-x-0 bottom-4 z-50 "
       role="status"
       aria-live="polite"
     >
-      <div className="mx-auto max-w-6xl px-4 pb-4">
+      <div className="mx-auto max-w-3xl px-4 pb-4">
         <div
-          className={`w-full ${bg} ${text} border ${border} rounded-2xl shadow-xl px-6 py-4 flex items-center justify-between gap-6`}
+          className={`w-full ${bg} ${text} border ${border} rounded-2xl shadow-xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6`}
         >
-          <div className="flex items-center gap-4">
-            <span
-              className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-default ${
-                isSuccess ? "bg-success" : "bg-error"
-              }`}
-            >
-              <Icon size={20} />
-            </span>
-            <span className="font-semibold  text-xl sm:text-2xl">
-              {isSuccess ? "Na mosca!" : "Incorreto!"}
-            </span>
+          <div>
+            <div className="flex items-center gap-2">
+              <span
+                className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-default ${
+                  isSuccess ? "bg-success" : "bg-error"
+                }`}
+              >
+                <Icon size={20} />
+              </span>
+              <span className="font-semibold  text-xl sm:text-2xl">
+                {isSuccess ? "Na mosca!" : "Incorreto!"}
+              </span>
+            </div>
+            {!isSuccess && (
+              <p className="font-bold text-lg mt-2">
+                Teste: <span className="font-medium">0001</span>
+              </p>
+            )}
           </div>
 
-          <div onClick={onContinue}>
+          <div onClick={onContinue} className="w-full sm:w-auto">
             <Button
               variant={isSuccess ? "success" : "error"}
               text={isSuccess ? "Continuar" : "Ok!"}

@@ -57,16 +57,18 @@ const LessonsPath = ({ module }: { module: string }) => {
 
   return (
     <div className="relative w-full flex justify-center py-8 max-w-3xl mx-auto">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
         <LessonNode
           status={getUnitStatus(1)}
           onClick={() => handleUnitClick(1, getUnitStatus(1))}
+          type="star"
         />
 
         <div style={{ transform: "translateX(-60px)" }}>
           <LessonNode
             status={getUnitStatus(2)}
             onClick={() => handleUnitClick(2, getUnitStatus(2))}
+            type="star"
           />
         </div>
 
@@ -77,6 +79,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(3)}
             onClick={() => handleUnitClick(3, getUnitStatus(3))}
+            type="star"
           />
 
           <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-24">
@@ -94,6 +97,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(4)}
             onClick={() => handleUnitClick(4, getUnitStatus(4))}
+            type="star"
           />
         </div>
 
@@ -101,6 +105,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(5)}
             onClick={() => handleUnitClick(5, getUnitStatus(5))}
+            type="star"
           />
         </div>
 
@@ -108,6 +113,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(6)}
             onClick={() => handleUnitClick(6, getUnitStatus(6))}
+            type="star"
           />
         </div>
 
@@ -115,6 +121,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(7)}
             onClick={() => handleUnitClick(7, getUnitStatus(7))}
+            type="star"
           />
         </div>
 
@@ -122,6 +129,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(8)}
             onClick={() => handleUnitClick(8, getUnitStatus(8))}
+            type="star"
           />
         </div>
 
@@ -132,6 +140,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(9)}
             onClick={() => handleUnitClick(9, getUnitStatus(9))}
+            type="star"
           />
 
           <div className="absolute right-55 top-1/2 -translate-y-1/2 translate-x-24">
@@ -149,6 +158,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           <LessonNode
             status={getUnitStatus(10)}
             onClick={() => handleUnitClick(10, getUnitStatus(10))}
+            type="trophy"
           />
         </div>
       </div>
