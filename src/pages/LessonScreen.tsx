@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router";
+import { replace, useParams } from "react-router";
 import { lessonsData } from "@/mocks/lessonsData";
 import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,6 +19,7 @@ const LessonScreen = () => {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showFeedbackPopUp, setShowFeedbackPopUp] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [correctOption, setCorrectOption] = useState<string>("");
 
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
@@ -59,6 +60,12 @@ const LessonScreen = () => {
 
     setIsCorrect(isAnswerCorrect);
 
+    setCorrectOption(
+      currentQuestion.options
+        ? currentQuestion.options[currentQuestion.correctAnswer as number]
+        : ""
+    );
+
     if (isAnswerCorrect) {
       const nextCorrect = correctAnswers + 1;
       setCorrectAnswers(nextCorrect);
@@ -76,6 +83,7 @@ const LessonScreen = () => {
 
       navigate("/lesson-failure/", {
         state: {
+          moduleId: moduleId,
           lessonId: lesson.id,
           correctAnswers: correctAnswers,
           wrongAnswers: nextWrong,
@@ -164,7 +172,7 @@ const LessonScreen = () => {
           <button
             className="text-foreground hover:text-foreground-dark cursor-pointer"
             aria-label="Fechar"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(`/${moduleId}`, { replace: true })}
           >
             <X className="w-6 h-6" />
           </button>
@@ -172,9 +180,11 @@ const LessonScreen = () => {
           <div className="flex-1 px-6">
             <div className="h-4 w-full bg-primary-light/30 rounded-full overflow-hidden">
               <div
-                className={`h-full bg-primary transition-all duration-500`}
+                className={`h-full bg-primary transition-all duration-500 pt-1`}
                 style={{ width: `${progress}%` }}
-              />
+              >
+                <div className="h-1/3 bg-primary-light/50"></div>
+              </div>
             </div>
           </div>
 
@@ -204,22 +214,17 @@ const LessonScreen = () => {
                 }`}
               >
                 <span className="text-foreground-dark">{label}</span>
-                <span className="text-foreground-light text-sm">{idx + 1}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="mt-8 flex items-center justify-between">
-          <div>
-            <Button variant="disabled" text="PULAR" />
-          </div>
-
+        <div className="mt-8 flex items-center justify-center">
           <div
             className={selected === null ? "opacity-50" : ""}
             onClick={handleCheck}
           >
-            <Button variant="primary" text="VERIFICAR" />
+            <Button variant="success" text="VERIFICAR" />
           </div>
         </div>
       </div>
@@ -227,6 +232,7 @@ const LessonScreen = () => {
       <AnswerFeedbackPopUp
         open={showFeedbackPopUp}
         type={isCorrect ? "correct" : "incorrect"}
+        correctOption={correctOption}
         onContinue={handleContinue}
       />
     </div>

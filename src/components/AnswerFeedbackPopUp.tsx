@@ -6,35 +6,48 @@ type FeedbackType = "correct" | "incorrect";
 interface AnswerFeedbackPopUpProps {
   open: boolean;
   type?: FeedbackType;
+  correctOption?: string;
   onContinue?: () => void;
 }
 
 const AnswerFeedbackPopUp = ({
   open,
   type,
+  correctOption,
   onContinue,
 }: AnswerFeedbackPopUpProps) => {
   if (!open) return null;
 
   const isSuccess = type === "correct";
 
-  const bg = isSuccess ? "bg-success-light/50" : "bg-error-light/50";
-  const border = isSuccess ? "border-success" : "border-error";
+  const bg = isSuccess ? "bg-success-extralight" : "bg-error-light";
   const text = isSuccess ? "text-success-dark" : "text-error-dark";
   const Icon = isSuccess ? Check : X;
+  const successPhrase = ["Na mosca!", "Muito bem!", "Parabéns!", "Excelente!"];
+  const errorPhrase = [
+    "Incorreto!",
+    "Quase lá!",
+    "Tente novamente!",
+    "Não desista!",
+  ];
+
+  const phraseToShow = isSuccess
+    ? successPhrase[Math.floor(Math.random() * successPhrase.length)]
+    : errorPhrase[Math.floor(Math.random() * errorPhrase.length)];
 
   return (
     <div
-      className="fixed inset-x-0 bottom-4 z-50 "
+      className="fixed inset-x-0 bottom-0 z-50 "
       role="status"
       aria-live="polite"
     >
-      <div className="mx-auto max-w-3xl px-4 pb-4">
+      <div className="mx-auto max-w-3xl">
+        <div className={`${bg} h-2`} />
         <div
-          className={`w-full ${bg} ${text} border ${border} rounded-2xl shadow-xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6`}
+          className={`w-full ${bg} ${text} px-8 py-4 pb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6`}
         >
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mt-2">
               <span
                 className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-default ${
                   isSuccess ? "bg-success" : "bg-error"
@@ -43,12 +56,13 @@ const AnswerFeedbackPopUp = ({
                 <Icon size={20} />
               </span>
               <span className="font-semibold  text-xl sm:text-2xl">
-                {isSuccess ? "Na mosca!" : "Incorreto!"}
+                {phraseToShow}
               </span>
             </div>
             {!isSuccess && (
               <p className="font-bold text-lg mt-2">
-                Teste: <span className="font-medium">0001</span>
+                Resposta correta:{" "}
+                <span className="font-medium">{correctOption}</span>
               </p>
             )}
           </div>

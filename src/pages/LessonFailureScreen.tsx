@@ -1,8 +1,12 @@
 import Char from "@/assets/images/char.svg";
-import { Check, X } from "lucide-react";
+import Button from "@/components/Button";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaCircleXmark } from "react-icons/fa6";
+import { TbTargetArrow } from "react-icons/tb";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface LessonFailureState {
+  moduleId: string;
   lessonId: string;
   correctAnswers: number;
   wrongAnswers: number;
@@ -13,7 +17,7 @@ const LessonFailureScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { lessonId, correctAnswers, wrongAnswers, totalQuestions } =
+  const { moduleId, lessonId, correctAnswers, wrongAnswers, totalQuestions } =
     (location.state as LessonFailureState) || {};
 
   const accuracyPercent =
@@ -22,8 +26,8 @@ const LessonFailureScreen = () => {
       : 0;
 
   const handleTryAgain = () => {
-    if (lessonId) {
-      navigate(`/lesson/${lessonId}`, { replace: true });
+    if (lessonId && moduleId) {
+      navigate(`/${moduleId}/lesson/${lessonId}`, { replace: true });
     } else {
       navigate("/");
     }
@@ -38,64 +42,50 @@ const LessonFailureScreen = () => {
             className="w-24 h-24 sm:w-28 sm:h-28 object-contain"
           />
         </div>
-
         <h1 className="mt-6 text-4xl font-extrabold text-foreground-dark text-center">
           Você quase conseguiu!
         </h1>
         <p className="mt-2 text-center text-gray-500">
           Continue praticando para melhorar
         </p>
-
-        <div className="mt-8 rounded-3xl bg-white border border-gray-200 shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100">
-                <Check className="w-5 h-5 text-green-600" />
-              </span>
-              <span className="text-gray-800">Respostas corretas</span>
-            </div>
-            <span className="text-green-600 font-bold text-lg">
-              {correctAnswers}
+        <div className="mt-10 flex items-stretch gap-2 justify-center">
+          <div className="w-25 h-20 p-1 pt-1 bg-success rounded-xl flex flex-col justify-between gap-1">
+            <span className="text-center text-default font-bold text-sm">
+              CORRETAS
             </span>
+            <div className=" bg-default h-12 rounded-lg text-success flex items-center justify-center gap-2 px-4">
+              <FaCheckCircle className="h-5 w-5" />
+              <span className="text-xl font-bold">{correctAnswers}</span>
+            </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100">
-                <X className="w-5 h-5 text-red-600" />
-              </span>
-              <span className="text-gray-800">Respostas incorretas</span>
-            </div>
-            <span className="text-red-600 font-bold text-lg">
-              {wrongAnswers}
+          <div className="w-25 h-20 p-1 pt-1 bg-error rounded-xl flex flex-col justify-between gap-1">
+            <span className="text-center text-default font-bold text-sm">
+              INCORRETAS
             </span>
+            <div className="bg-default h-12 rounded-lg text-error flex items-center justify-center gap-2 px-4">
+              <FaCircleXmark className="h-5 w-5" />
+              <span className="text-xl font-bold">{wrongAnswers}</span>
+            </div>
           </div>
 
-          <div className="my-6 h-px w-full bg-gray-200" />
-
-          <div className="flex items-center justify-between">
-            <span className="text-gray-600">Precisão</span>
-            <span className="text-foreground-dark font-bold">
-              {accuracyPercent}%
+          <div className="w-25 h-20 p-1 pt-1 bg-primary rounded-xl flex flex-col justify-between gap-1">
+            <span className="text-center text-default font-bold text-sm">
+              PRECISÃO
             </span>
+            <div className="bg-default h-12 rounded-lg text-primary flex items-center justify-center gap-2 px-2">
+              <TbTargetArrow className="h-6 w-6" />
+              <span className="text-xl font-bold">{accuracyPercent}%</span>
+            </div>
           </div>
         </div>
-
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => navigate("/")}
-            className="px-8 py-3 rounded-2xl bg-gray-200 text-gray-800 font-bold cursor-pointer"
-          >
-            VOLTAR
-          </button>
-          <button
-            type="button"
-            onClick={handleTryAgain}
-            className="px-8 py-3 rounded-2xl bg-[#32CD32] hover:bg-[#2fb32f] text-white font-extrabold cursor-pointer"
-          >
-            TENTAR NOVAMENTE
-          </button>
+        <div className="mt-10 flex items-center justify-center gap-4 ">
+          <div onClick={() => navigate("/")}>
+            <Button variant="disabled" text="VOLTAR" />
+          </div>
+          <div onClick={handleTryAgain}>
+            <Button variant="success" text="TENTAR NOVAMENTE" />
+          </div>
         </div>
       </div>
     </div>

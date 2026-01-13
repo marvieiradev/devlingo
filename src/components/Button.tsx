@@ -25,7 +25,7 @@ export const Button = ({
 
     case "disabled":
       variant =
-        "bg-foreground-extralight border-foreground-light/50 text-foreground-light/50 cursor-not-allowed";
+        "bg-foreground-extralight border-foreground-light text-foreground-light hover:bg-foreground-light hover:border-foreground-extralight hover:text-foreground-extralight";
       break;
   }
   return (

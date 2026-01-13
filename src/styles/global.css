@@ -1,8 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
 @import "tailwindcss";
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 @theme {
@@ -16,6 +18,7 @@
   --color-primary: oklch(70.7% 0.165 254.624);
   --color-primary-dark: oklch(54.6% 0.245 262.881);
   --color-primary-light: oklch(80.9% 0.105 251.813);
+  --color-primary-extralight: oklch(93.2% 0.032 255.585);
 
   /*--color-secondary: oklch(0.25 0.32 264.29);
   --color-secondary-dark: oklch(0.98 0.05 261.59);
@@ -24,14 +27,17 @@
   --color-success: oklch(72.3% 0.219 149.579);
   --color-success-dark: oklch(62.7% 0.194 149.214);
   --color-success-light: oklch(87.1% 0.15 154.449);
+  --color-success-extralight: oklch(0.9201 0.1382 151);
 
   --color-error: oklch(63.7% 0.237 25.331);
   --color-error-dark: oklch(57.7% 0.245 27.325);
   --color-error-light: oklch(80.8% 0.114 19.571);
+  --color-error-extralight: oklch(0.8587 0.076456 18.7599);
 
   --color-warning: oklch(81.2% 0.23 91.176);
   --color-warning-dark: oklch(70.5% 0.234 89.761);
   --color-warning-light: oklch(90.3% 0.15 94.588);
+  --color-warning-extralight: oklch(97.3% 0.071 103.193);
 
   --color-batery-icon: oklch(0.7748 0.1669 345.5);
   --color-xp-icon: oklch(85.5% 0.19 79.21);
