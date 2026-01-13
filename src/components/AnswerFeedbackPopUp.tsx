@@ -67,10 +67,11 @@ const AnswerFeedbackPopUp = ({
             )}
           </div>
 
-          <div onClick={onContinue} className="w-full sm:w-auto">
+          <div className="w-full sm:w-auto">
             <Button
               variant={isSuccess ? "success" : "error"}
               text={isSuccess ? "Continuar" : "Ok!"}
+              action={onContinue || (() => {})}
             />
           </div>
         </div>

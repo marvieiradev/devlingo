@@ -4,7 +4,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./pages/Home";
 import LessonScreen from "./pages/LessonScreen";
 import LessonSuccessScreen from "./pages/LessonSuccessScreen";
 import LessonFailureScreen from "./pages/LessonFailureScreen";
@@ -44,15 +43,6 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/:id"
-            element={
-              <ProtectedRoute>
                 <Lessons />
               </ProtectedRoute>
             }
@@ -77,7 +67,7 @@ function App() {
           />
 
           <Route
-            path=":moduleId/lesson/:lessonId"
+            path="/lesson/:lessonId"
             element={
               <ProtectedRoute>
                 <LessonScreen />

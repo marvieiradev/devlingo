@@ -80,12 +80,17 @@ const LessonFailureScreen = () => {
           </div>
         </div>
         <div className="mt-10 flex items-center justify-center gap-4 ">
-          <div onClick={() => navigate("/")}>
-            <Button variant="disabled" text="VOLTAR" />
-          </div>
-          <div onClick={handleTryAgain}>
-            <Button variant="success" text="TENTAR NOVAMENTE" />
-          </div>
+          <Button
+            variant="disabled"
+            text="VOLTAR"
+            action={() => navigate("/")}
+          />
+
+          <Button
+            variant="success"
+            text="TENTAR NOVAMENTE"
+            action={handleTryAgain}
+          />
         </div>
       </div>
     </div>

@@ -60,8 +60,12 @@ const LessonSuccessScreen = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12" onClick={() => navigate("/")}>
-          <Button variant="success" text="CONTINUAR" />
+        <div className="mt-12">
+          <Button
+            variant="success"
+            text="CONTINUAR"
+            action={() => navigate("/")}
+          />
         </div>
       </div>
     </div>

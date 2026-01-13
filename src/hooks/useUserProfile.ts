@@ -7,6 +7,7 @@ export interface UserProfile {
   name: string;
   email: string;
   total_xp: number;
+  current_module: string;
 }
 
 export const STORAGE_KEY = "devlingo:auth:user";
@@ -32,7 +33,7 @@ export const useUserProfile = () => {
       try {
         const { data, error } = await supabase
           .from("user_profiles")
-          .select("id, name, email, total_xp")
+          .select("id, name, email, total_xp, current_module")
           .eq("id", user.id)
           .maybeSingle();
 

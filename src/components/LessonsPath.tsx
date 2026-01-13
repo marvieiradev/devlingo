@@ -5,6 +5,7 @@ import { useState } from "react";
 import LessonModal from "./LessonModal";
 import { useCompletedLessons } from "@/hooks/useCompletedLessons";
 import { lessonsData } from "@/mocks/lessonsData";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 const LessonsPath = ({ module }: { module: string }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<number | null>(null);
@@ -12,6 +13,8 @@ const LessonsPath = ({ module }: { module: string }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasCompleted, setHasCompleted] = useState(false);
   const { completedLessons } = useCompletedLessons();
+
+  const { profile } = useUserProfile();
 
   const mapUnitToLessonId = (unitId: number): string | null => {
     const lessonModule = lessonsData.find((m) => m.id === module);
@@ -44,7 +47,7 @@ const LessonsPath = ({ module }: { module: string }) => {
       return "completed";
     }
 
-    if (unitId === 1) {
+    if (unitId === 1 && module === profile?.current_module) {
       return "available";
     }
 

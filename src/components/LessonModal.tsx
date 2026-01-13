@@ -33,9 +33,15 @@ const LessonModal = ({
     : [];
 
   const handleStartLesson = (lessonId: string) => {
-    navigate(`/${selectedModuleId}/lesson/${lessonId}`);
+    navigate(`/lesson/${lessonId}`, {
+      state: {
+        moduleId: selectedModuleId,
+      },
+    });
     onClose();
   };
+
+  console.log("LessonModal selectedModuleId:", selectedModuleId);
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center">
@@ -53,12 +59,10 @@ const LessonModal = ({
                   <p className="mt-2 text-center text-default/90">
                     {lesson.description}
                   </p>
-                  <div
-                    className="mt-8 mb-8 w-[70%] mx-auto"
-                    onClick={() => handleStartLesson(lesson.id)}
-                  >
+                  <div className="mt-8 mb-8 w-[70%] mx-auto">
                     <Button
                       variant="secondary"
+                      action={() => handleStartLesson(lesson.id)}
                       text={
                         completed
                           ? "Revisar"

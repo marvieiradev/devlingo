@@ -266,7 +266,7 @@ export const lessonsData: Module[] = [
         ],
       },
       {
-        id: "css-beginner-7",
+        id: "html-beginner-7",
         unitId: 7,
         unit: 7,
         title: "Formulários Básicos",

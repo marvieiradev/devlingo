@@ -1,25 +1,32 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { replace, useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { lessonsData } from "@/mocks/lessonsData";
 import AnswerFeedbackPopUp from "@/components/AnswerFeedbackPopUp";
 import { useAuth } from "@/contexts/AuthContext";
 import { saveLessonsScore } from "@/services/saveLessonsScore";
 import { PiBatteryChargingFill } from "react-icons/pi";
 import Button from "@/components/Button";
+import { updateUserProfile } from "@/services/updateCurrentModule";
+
+interface LessonModuleState {
+  moduleId: string;
+}
 
 const LessonScreen = () => {
+  const location = useLocation();
+  const { moduleId } = (location.state as LessonModuleState) || {};
   const { user } = useAuth();
-
   const navigate = useNavigate();
-  const { moduleId, lessonId } = useParams();
+  const { lessonId } = useParams();
 
   const [selected, setSelected] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showFeedbackPopUp, setShowFeedbackPopUp] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correctOption, setCorrectOption] = useState<string>("");
+  const [clicked, setClicked] = useState(false);
 
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
@@ -27,6 +34,26 @@ const LessonScreen = () => {
 
   const lessonModule = lessonsData.find((m) => m.id === moduleId);
   const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
+
+  const saveCurrentModule = () => {
+    let moduleReturned;
+    if (lesson?.unitId === 10) {
+      switch (moduleId) {
+        case "html":
+          moduleReturned = "css";
+          break;
+        case "css":
+          moduleReturned = "js";
+          break;
+        default:
+          moduleReturned = "html";
+          break;
+      }
+    } else {
+      moduleReturned = moduleId;
+    }
+    return moduleReturned;
+  };
 
   if (!lesson) {
     console.warn("[Lesson] lesson not found", { lessonId });
@@ -54,7 +81,9 @@ const LessonScreen = () => {
   const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
 
   const handleCheck = async () => {
-    if (selected === null) return;
+    if (selected === null || clicked) return;
+
+    setClicked(true);
 
     const isAnswerCorrect = selected === currentQuestion.correctAnswer;
 
@@ -97,20 +126,12 @@ const LessonScreen = () => {
   };
 
   const handleContinue = async () => {
-    console.log("[Lesson] handleContinue", {
-      currentQuestionIndex,
-      counters: { correctAnswers, wrongAnswers, lives },
-      totalQuestions,
-    });
     setShowFeedbackPopUp(false);
+    setClicked(false);
 
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex((prev) => {
         const next = prev + 1;
-        console.log("[Lesson] next question", {
-          nextIndex: next,
-          totalQuestions,
-        });
         return next;
       });
       setSelected(null);
@@ -127,7 +148,12 @@ const LessonScreen = () => {
               xpEarned: lesson.xpReward,
             });
 
+            const update = await updateUserProfile(user.id, {
+              current_module: saveCurrentModule(),
+            });
+
             console.debug("[Lesson] saved score successfully", result);
+            console.debug("[Lesson] saved current module successfully", update);
           } catch (error) {
             console.error("[Lesson] error saving score/navigating:", error);
           }
@@ -172,7 +198,7 @@ const LessonScreen = () => {
           <button
             className="text-foreground hover:text-foreground-dark cursor-pointer"
             aria-label="Fechar"
-            onClick={() => navigate(`/${moduleId}`, { replace: true })}
+            onClick={() => navigate("/", { replace: true })}
           >
             <X className="w-6 h-6" />
           </button>
@@ -205,13 +231,14 @@ const LessonScreen = () => {
             const isSelected = selected === idx;
             return (
               <button
+                disabled={clicked}
                 key={label}
                 onClick={() => setSelected(idx)}
-                className={`w-full text-left rounded-2xl border transition shadow-sm p-4 flex items-center justify-between ${
+                className={`w-full text-left rounded-2xl border transition shadow-sm p-4 flex items-center justify-between $ ${
                   isSelected
                     ? "bg-primary-light/15 border-2 border-primary border-b-4"
                     : "bg-default  border-2 border-foreground-extralight hover:bg-foreground-extralight/50 border-b-4"
-                }`}
+                }${clicked ? " opacity-75 cursor-not-allowed" : ""}`}
               >
                 <span className="text-foreground-dark">{label}</span>
               </button>
@@ -221,10 +248,16 @@ const LessonScreen = () => {
 
         <div className="mt-8 flex items-center justify-center">
           <div
-            className={selected === null ? "opacity-50" : ""}
-            onClick={handleCheck}
+            className={`${selected === null ? "opacity-50" : ""}${
+              clicked ? "opacity-0 cursor-not-allowed" : ""
+            }`}
           >
-            <Button variant="success" text="VERIFICAR" />
+            <Button
+              variant="success"
+              text="VERIFICAR"
+              action={handleCheck}
+              disabled={clicked}
+            />
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ export async function createOrUpdateUserProfile(
     console.log("[userProfile] inserting profile", { userId, name, email });
     const { error: insertError } = await supabase
       .from("user_profiles")
-      .insert({ id: userId, name, email, total_xp: 0 });
+      .insert({ id: userId, name, email, total_xp: 0, current_module: "html" });
 
     if (insertError) {
       console.error("[userProfile] insert error", insertError);
