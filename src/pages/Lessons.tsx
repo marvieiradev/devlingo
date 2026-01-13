@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import LessonsPath from "@/components/LessonsPath";
 import { useEffect, useRef, useState } from "react";
 import { lessonsData } from "@/mocks/lessonsData";
+import Separator from "@/components/Separator";
 
 export const Lessons = () => {
   console.log();
@@ -64,14 +65,28 @@ export const Lessons = () => {
           <LessonsPath module="html" />
         </section>
 
+        <Separator module="CSS" />
+
         <section
           ref={(el) => {
             if (el) sectionsRef.current[1] = el;
           }}
           data-text={lessonsData[1].title}
-          data-color="bg-error border-error-dark"
+          data-color="bg-secondary border-secondary-dark"
         >
           <LessonsPath module="css" />
+        </section>
+
+        <Separator module="Javascript" />
+
+        <section
+          ref={(el) => {
+            if (el) sectionsRef.current[2] = el;
+          }}
+          data-text={lessonsData[2].title}
+          data-color="bg-variant border-variant-dark"
+        >
+          <LessonsPath module="js" />
         </section>
       </div>
     </div>

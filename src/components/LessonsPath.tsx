@@ -67,7 +67,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           type="star"
         />
 
-        <div style={{ transform: "translateX(-60px)" }}>
+        <div style={{ transform: "translateX(-40px)" }}>
           <LessonNode
             status={getUnitStatus(2)}
             onClick={() => handleUnitClick(2, getUnitStatus(2))}
@@ -77,7 +77,7 @@ const LessonsPath = ({ module }: { module: string }) => {
 
         <div
           className="relative w-full flex justify-center"
-          style={{ transform: "translateX(-80px)" }}
+          style={{ transform: "translateX(-60px)" }}
         >
           <LessonNode
             status={getUnitStatus(3)}
@@ -96,7 +96,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           </div>
         </div>
 
-        <div style={{ transform: "translateX(-60px)" }}>
+        <div style={{ transform: "translateX(-40px)" }}>
           <LessonNode
             status={getUnitStatus(4)}
             onClick={() => handleUnitClick(4, getUnitStatus(4))}
@@ -104,7 +104,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           />
         </div>
 
-        <div style={{ transform: "translateX(-40px)" }}>
+        <div style={{ transform: "translateX(0px)" }}>
           <LessonNode
             status={getUnitStatus(5)}
             onClick={() => handleUnitClick(5, getUnitStatus(5))}
@@ -112,7 +112,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           />
         </div>
 
-        <div style={{ transform: "translateX(0px)" }}>
+        <div style={{ transform: "translateX(40px)" }}>
           <LessonNode
             status={getUnitStatus(6)}
             onClick={() => handleUnitClick(6, getUnitStatus(6))}
@@ -120,29 +120,13 @@ const LessonsPath = ({ module }: { module: string }) => {
           />
         </div>
 
-        <div style={{ transform: "translateX(40px)" }}>
+        <div
+          className="relative w-full flex justify-center"
+          style={{ transform: "translateX(60px)" }}
+        >
           <LessonNode
             status={getUnitStatus(7)}
             onClick={() => handleUnitClick(7, getUnitStatus(7))}
-            type="star"
-          />
-        </div>
-
-        <div style={{ transform: "translateX(60px)" }}>
-          <LessonNode
-            status={getUnitStatus(8)}
-            onClick={() => handleUnitClick(8, getUnitStatus(8))}
-            type="star"
-          />
-        </div>
-
-        <div
-          className="relative w-full flex justify-center"
-          style={{ transform: "translateX(80px)" }}
-        >
-          <LessonNode
-            status={getUnitStatus(9)}
-            onClick={() => handleUnitClick(9, getUnitStatus(9))}
             type="star"
           />
 
@@ -157,7 +141,23 @@ const LessonsPath = ({ module }: { module: string }) => {
           </div>
         </div>
 
-        <div style={{ transform: "translateX(60px)" }}>
+        <div style={{ transform: "translateX(40px)" }}>
+          <LessonNode
+            status={getUnitStatus(8)}
+            onClick={() => handleUnitClick(8, getUnitStatus(8))}
+            type="star"
+          />
+        </div>
+
+        <div style={{ transform: "translateX(0px)" }}>
+          <LessonNode
+            status={getUnitStatus(9)}
+            onClick={() => handleUnitClick(9, getUnitStatus(9))}
+            type="star"
+          />
+        </div>
+
+        <div style={{ transform: "translateX(-40px)" }}>
           <LessonNode
             status={getUnitStatus(10)}
             onClick={() => handleUnitClick(10, getUnitStatus(10))}

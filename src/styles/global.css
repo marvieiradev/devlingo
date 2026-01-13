@@ -20,9 +20,15 @@
   --color-primary-light: oklch(80.9% 0.105 251.813);
   --color-primary-extralight: oklch(93.2% 0.032 255.585);
 
-  /*--color-secondary: oklch(0.25 0.32 264.29);
-  --color-secondary-dark: oklch(0.98 0.05 261.59);
-  --color-secondary-light: oklch(0.98 0.05 261.59);*/
+  --color-secondary: oklch(58.5% 0.233 277.117);
+  --color-secondary-dark: oklch(45.7% 0.24 277.023);
+  --color-secondary-light: oklch(78.5% 0.115 274.713);
+  --color-secondary-extralight: oklch(93% 0.034 272.788);
+
+  --color-variant: oklch(70.5% 0.213 47.604);
+  --color-variant-dark: oklch(55.3% 0.195 38.402);
+  --color-variant-light: oklch(83.7% 0.128 66.29);
+  --color-variant-extralight: oklch(95.4% 0.038 75.164);
 
   --color-success: oklch(72.3% 0.219 149.579);
   --color-success-dark: oklch(62.7% 0.194 149.214);
