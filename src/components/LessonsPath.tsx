@@ -7,7 +7,7 @@ import { useCompletedLessons } from "@/hooks/useCompletedLessons";
 import { lessonsData } from "@/mocks/lessonsData";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
-const LessonsPath = ({ module }: { module: string }) => {
+const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<number | null>(null);
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +65,7 @@ const LessonsPath = ({ module }: { module: string }) => {
           status={getUnitStatus(1)}
           onClick={() => handleUnitClick(1, getUnitStatus(1))}
           type="star"
+          module={module}
         />
 
         <div style={{ transform: "translateX(-40px)" }}>
@@ -72,6 +73,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(2)}
             onClick={() => handleUnitClick(2, getUnitStatus(2))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -83,6 +85,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(3)}
             onClick={() => handleUnitClick(3, getUnitStatus(3))}
             type="star"
+            module={module}
           />
 
           <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-24">
@@ -101,6 +104,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(4)}
             onClick={() => handleUnitClick(4, getUnitStatus(4))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -109,6 +113,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(5)}
             onClick={() => handleUnitClick(5, getUnitStatus(5))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -117,6 +122,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(6)}
             onClick={() => handleUnitClick(6, getUnitStatus(6))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -128,6 +134,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(7)}
             onClick={() => handleUnitClick(7, getUnitStatus(7))}
             type="star"
+            module={module}
           />
 
           <div className="absolute right-55 top-1/2 -translate-y-1/2 translate-x-24">
@@ -146,6 +153,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(8)}
             onClick={() => handleUnitClick(8, getUnitStatus(8))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -154,6 +162,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(9)}
             onClick={() => handleUnitClick(9, getUnitStatus(9))}
             type="star"
+            module={module}
           />
         </div>
 
@@ -162,6 +171,7 @@ const LessonsPath = ({ module }: { module: string }) => {
             status={getUnitStatus(10)}
             onClick={() => handleUnitClick(10, getUnitStatus(10))}
             type="trophy"
+            module={module}
           />
         </div>
       </div>

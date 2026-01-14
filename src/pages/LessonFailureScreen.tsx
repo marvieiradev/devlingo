@@ -11,14 +11,21 @@ interface LessonFailureState {
   correctAnswers: number;
   wrongAnswers: number;
   totalQuestions: number;
+  styles: string;
 }
 
 const LessonFailureScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { moduleId, lessonId, correctAnswers, wrongAnswers, totalQuestions } =
-    (location.state as LessonFailureState) || {};
+  const {
+    moduleId,
+    lessonId,
+    correctAnswers,
+    wrongAnswers,
+    totalQuestions,
+    styles,
+  } = (location.state as LessonFailureState) || {};
 
   const accuracyPercent =
     totalQuestions > 0
@@ -26,8 +33,11 @@ const LessonFailureScreen = () => {
       : 0;
 
   const handleTryAgain = () => {
-    if (lessonId && moduleId) {
-      navigate(`/${moduleId}/lesson/${lessonId}`, { replace: true });
+    if (lessonId) {
+      navigate(`/lesson/${lessonId}`, {
+        replace: true,
+        state: { moduleId, styles },
+      });
     } else {
       navigate("/");
     }

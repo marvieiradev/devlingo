@@ -17,7 +17,7 @@ const LessonSuccessScreen = () => {
   const { xpEarned, accuracy } = (location.state as LessonSuccessState) || {};
 
   return (
-    <div className="min-h-screen bg-primary flex items-center justify-center max-w-3xl mx-auto">
+    <div className="min-h-screen bg-default flex items-center justify-center max-w-3xl mx-auto">
       <div className="flex flex-col items-center">
         <div>
           <img

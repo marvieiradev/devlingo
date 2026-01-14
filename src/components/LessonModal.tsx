@@ -1,7 +1,6 @@
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { lessonsData } from "@/mocks/lessonsData";
-import Button from "./Button";
 
 interface LessonModalProps {
   isOpen: boolean;
@@ -22,6 +21,27 @@ const LessonModal = ({
 
   if (!isOpen) return null;
 
+  const style =
+    selectedModuleId === "html"
+      ? "primary"
+      : selectedModuleId === "css"
+      ? "secondary"
+      : "variant";
+
+  const styleText =
+    selectedModuleId === "html"
+      ? "text-primary"
+      : selectedModuleId === "css"
+      ? "text-secondary"
+      : "text-variant";
+
+  const styleBorder =
+    selectedModuleId === "html"
+      ? "border-b-primary-light"
+      : selectedModuleId === "css"
+      ? "border-b-secondary-light"
+      : "border-b-variant-light";
+
   const selectedModule = lessonsData.find(
     (module) => module.id === selectedModuleId
   );
@@ -36,19 +56,20 @@ const LessonModal = ({
     navigate(`/lesson/${lessonId}`, {
       state: {
         moduleId: selectedModuleId,
+        styles: style,
       },
     });
     onClose();
   };
-
-  console.log("LessonModal selectedModuleId:", selectedModuleId);
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
 
       <div className="relative z-50 w-full max-w-2xl mx-4">
-        <div className="rounded-3xl bg-primary text-default shadow-2xl">
+        <div
+          className={`rounded-3xl bg-${style} border-b-6 border-b-${style}-dark text-default shadow-2xl`}
+        >
           <div className="px-8 pt-8 pb-4 flex items-start justify-between">
             <div className="w-full">
               {unitLessons.map((lesson) => (
@@ -59,16 +80,15 @@ const LessonModal = ({
                   <p className="mt-2 text-center text-default/90">
                     {lesson.description}
                   </p>
-                  <div className="mt-8 mb-8 w-[70%] mx-auto">
-                    <Button
-                      variant="secondary"
-                      action={() => handleStartLesson(lesson.id)}
-                      text={
-                        completed
-                          ? "Revisar"
-                          : `Começar + ${lesson.xpReward} XP`
-                      }
-                    />
+                  <div className="mt-8 mb-8 w-[70%] mx-auto min-h-13.75">
+                    <button
+                      onClick={() => handleStartLesson(lesson.id)}
+                      className={`w-full bg-default ${styleBorder} ${styleText} hover:border-none hover:transform hover:translate-y-1 shrink-0 px-4 sm:px-8 py-3 border-b-4 rounded-xl font-semibold uppercase text-center cursor-pointer`}
+                    >
+                      {completed
+                        ? "Revisar"
+                        : `Começar + ${lesson.xpReward} XP`}
+                    </button>
                   </div>
                 </div>
               ))}

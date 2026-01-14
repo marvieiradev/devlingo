@@ -9,14 +9,16 @@ import { saveLessonsScore } from "@/services/saveLessonsScore";
 import { PiBatteryChargingFill } from "react-icons/pi";
 import Button from "@/components/Button";
 import { updateUserProfile } from "@/services/updateCurrentModule";
+import ProgressBar from "@/components/ProgressBar";
 
 interface LessonModuleState {
   moduleId: string;
+  styles: string;
 }
 
 const LessonScreen = () => {
   const location = useLocation();
-  const { moduleId } = (location.state as LessonModuleState) || {};
+  const { moduleId, styles } = (location.state as LessonModuleState) || {};
   const { user } = useAuth();
   const navigate = useNavigate();
   const { lessonId } = useParams();
@@ -54,6 +56,24 @@ const LessonScreen = () => {
     }
     return moduleReturned;
   };
+
+  let bg = "";
+  let border = "";
+
+  switch (styles) {
+    case "primary":
+      bg = "bg-primary/15";
+      border = "border-primary";
+      break;
+    case "secondary":
+      bg = "bg-secondary/15";
+      border = "border-secondary";
+      break;
+    case "variant":
+      bg = "bg-variant/15";
+      border = "border-variant";
+      break;
+  }
 
   if (!lesson) {
     console.warn("[Lesson] lesson not found", { lessonId });
@@ -117,6 +137,7 @@ const LessonScreen = () => {
           correctAnswers: correctAnswers,
           wrongAnswers: nextWrong,
           totalQuestions,
+          styles,
         },
       });
       return;
@@ -204,14 +225,7 @@ const LessonScreen = () => {
           </button>
 
           <div className="flex-1 px-6">
-            <div className="h-4 w-full bg-primary-light/30 rounded-full overflow-hidden">
-              <div
-                className={`h-full bg-primary transition-all duration-500 pt-1`}
-                style={{ width: `${progress}%` }}
-              >
-                <div className="h-1/3 bg-primary-light/50"></div>
-              </div>
-            </div>
+            <ProgressBar style={styles} progress={progress} />
           </div>
 
           <div className="flex items-center gap-2 text-batery-icon">
@@ -234,9 +248,9 @@ const LessonScreen = () => {
                 disabled={clicked}
                 key={label}
                 onClick={() => setSelected(idx)}
-                className={`w-full text-left rounded-2xl border transition shadow-sm p-4 flex items-center justify-between $ ${
+                className={`w-full text-left rounded-2xl shadow-sm p-4 flex items-center justify-between $ ${
                   isSelected
-                    ? "bg-primary-light/15 border-2 border-primary border-b-4"
+                    ? `${bg} border-2 ${border} border-b-4`
                     : "bg-default  border-2 border-foreground-extralight hover:bg-foreground-extralight/50 border-b-4"
                 }${clicked ? " opacity-75 cursor-not-allowed" : ""}`}
               >

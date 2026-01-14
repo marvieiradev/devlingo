@@ -21,20 +21,19 @@ const Header = () => {
         <div className="flex items-center gap-5 text-gray-800">
           <div className="flex items-center gap-2">
             <PiFireFill className="w-6 h-6 sm:w-8 sm:h-8 text-fire-icon" />
-            <span className="font-semibold text-fire-icon">∞</span>
+            <span className="font-semibold text-fire-icon">99</span>
           </div>
 
           <div className="flex items-center gap-2">
             <TbDiamondFilled className="w-6 h-6 sm:w-8 sm:h-8 text-diamond-icon" />
             <span className="font-semibold text-diamond-icon">
-              99
               {loading ? "..." : profile?.total_xp}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <PiBatteryChargingFill className="w-6 h-6 sm:w-8 sm:h-8 text-batery-icon" />
-            <span className="font-semibold text-batery-icon">∞</span>
+            <span className="font-semibold text-batery-icon">99</span>
           </div>
 
           {isAuthenticated && (

@@ -5,8 +5,6 @@ import { lessonsData } from "@/mocks/lessonsData";
 import Separator from "@/components/Separator";
 
 export const Lessons = () => {
-  console.log();
-
   const sectionsRef = useRef<HTMLElement[]>([]);
   const [header, setHeader] = useState({
     text: "",
