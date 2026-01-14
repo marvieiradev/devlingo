@@ -16,6 +16,9 @@ export const Button = ({
     case "secondary":
       variant = "bg-default border-primary-light text-primary ";
       break;
+    case "signup":
+      variant = "bg-primary-light border-primary-dark text-primary-dark ";
+      break;
     case "success":
       variant = "bg-success border-success-dark text-default ";
       break;
