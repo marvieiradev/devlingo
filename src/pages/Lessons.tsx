@@ -66,6 +66,7 @@ export const Lessons = () => {
         <Separator module="CSS" />
 
         <section
+          id="css"
           ref={(el) => {
             if (el) sectionsRef.current[1] = el;
           }}
@@ -78,6 +79,7 @@ export const Lessons = () => {
         <Separator module="Javascript" />
 
         <section
+          id="js"
           ref={(el) => {
             if (el) sectionsRef.current[2] = el;
           }}

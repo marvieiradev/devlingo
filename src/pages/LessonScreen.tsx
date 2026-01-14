@@ -38,63 +38,40 @@ const LessonScreen = () => {
   const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
 
   const saveCurrentModule = () => {
-    let moduleReturned;
-    if (lesson?.unitId === 10) {
-      switch (moduleId) {
-        case "html":
-          moduleReturned = "css";
-          break;
-        case "css":
-          moduleReturned = "js";
-          break;
-        default:
-          moduleReturned = "html";
-          break;
-      }
-    } else {
-      moduleReturned = moduleId;
-    }
-    return moduleReturned;
+    if (lesson?.unitId !== 10) return moduleId;
+
+    const nextModule: Record<string, string> = {
+      html: "css",
+      css: "js",
+      js: "html",
+    };
+
+    return nextModule[moduleId] ?? "html";
   };
 
-  let bg = "";
-  let border = "";
+  const styleMap = {
+    primary: ["bg-primary/15", "border-primary"],
+    secondary: ["bg-secondary/15", "border-secondary"],
+    variant: ["bg-variant/15", "border-variant"],
+  } as any;
 
-  switch (styles) {
-    case "primary":
-      bg = "bg-primary/15";
-      border = "border-primary";
-      break;
-    case "secondary":
-      bg = "bg-secondary/15";
-      border = "border-secondary";
-      break;
-    case "variant":
-      bg = "bg-variant/15";
-      border = "border-variant";
-      break;
-  }
+  const [bg = "", border = ""] = styleMap[styles] ?? [];
 
   if (!lesson) {
     console.warn("[Lesson] lesson not found", { lessonId });
-    return;
-  }
-  /*if (!lesson) {
-    console.warn("[Lesson] lesson not found", { lessonId });
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-default flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600 mb-4">Lição não encontrada</p>
-          <button
-            onClick={() => navigate("/")}
-            className="bg-[#58CC02] text-white px-6 py-2 rounded-xl cursor-pointer"
-          >
-            Voltar
-          </button>
+          <p className="text-foreground mb-4">Lição não encontrada</p>
+          <Button
+            variant="primary"
+            text="Voltar"
+            action={() => navigate("/")}
+          />
         </div>
       </div>
     );
-  }*/
+  }
 
   const currentQuestion = lesson.questions[currentQuestionIndex];
   const totalQuestions = lesson.questions.length;

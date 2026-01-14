@@ -1,8 +1,9 @@
-import { CodeXml, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { PiBatteryChargingFill, PiFireFill } from "react-icons/pi";
 import { TbDiamondFilled } from "react-icons/tb";
+import { FaLaptopCode } from "react-icons/fa6";
+import { ImExit } from "react-icons/im";
 
 const Header = () => {
   const { logout, isAuthenticated } = useAuth();
@@ -12,13 +13,13 @@ const Header = () => {
     <header className="w-full bg-default max-w-3xl mx-auto">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center justify-center rounded-md bg-orange-400 text-white text-sm font-bold w-7 h-7 select-none">
-            <CodeXml />
+          <span className="inline-flex items-center justify-center rounded-sm bg-success text-default text-sm font-bold w-8 h-6 select-none">
+            <FaLaptopCode className="w-4 h-4" />
           </span>
           <div className="h-6 w-px bg-default" />
         </div>
 
-        <div className="flex items-center gap-5 text-gray-800">
+        <div className="flex items-center gap-5">
           <div className="flex items-center gap-2">
             <PiFireFill className="w-6 h-6 sm:w-8 sm:h-8 text-fire-icon" />
             <span className="font-semibold text-fire-icon">99</span>
@@ -40,9 +41,9 @@ const Header = () => {
             <button
               type="button"
               onClick={logout}
-              className="flex items-center gap-2 text-blue-400 hover:text-indigo-400 font-medium cursor-pointer"
+              className="flex items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer"
             >
-              <LogOut className="w-5 h-5" />
+              <ImExit className="w-5 h-5" />
               <span>Sair</span>
             </button>
           )}

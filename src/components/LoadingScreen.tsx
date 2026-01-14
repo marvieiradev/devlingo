@@ -16,12 +16,12 @@ const LoadingScreen = ({ isFadingOut }: LoadingScreenProps) => {
         <img
           src={Char}
           alt="Devlingo loader"
-          className="w-36 h-36 object-contain animate-float"
+          className="w-32 h-32 object-contain animate-float"
         />
       </div>
 
-      <h1 className="text-default text-5xl font-bold mt-12 tracking-wider">
-        Devlingo
+      <h1 className="text-default text-5xl font-extrabold mt-12 tracking-wider">
+        devlingo
       </h1>
     </div>
   );

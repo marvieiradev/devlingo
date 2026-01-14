@@ -23,7 +23,7 @@ const LessonSuccessScreen = () => {
           <img
             src={Char}
             alt="Mascote"
-            className="h-65 xs:h-50 object-contain"
+            className="h-65 sm:h-75 object-contain"
           />
           <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold text-warning text-center">
             Lição concluída!

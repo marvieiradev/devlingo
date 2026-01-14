@@ -9,28 +9,17 @@ export const Button = ({
   action: () => void;
   disabled?: boolean;
 }) => {
-  switch (variant) {
-    case "primary":
-      variant = "bg-primary border-primary-dark text-default ";
-      break;
-    case "secondary":
-      variant = "bg-default border-primary-light text-primary ";
-      break;
-    case "signup":
-      variant = "bg-primary-light border-primary-dark text-primary-dark ";
-      break;
-    case "success":
-      variant = "bg-success border-success-dark text-default ";
-      break;
-    case "error":
-      variant = "bg-error border-error-dark text-default ";
-      break;
+  const variants: Record<string, string> = {
+    primary: "bg-primary border-primary-dark text-default",
+    secondary: "bg-default border-primary-light text-primary",
+    signup: "bg-primary-light border-primary-dark text-primary-dark",
+    success: "bg-success border-success-dark text-default",
+    error: "bg-error border-error-dark text-default",
+    disabled:
+      "bg-foreground-extralight border-foreground-light text-foreground-light",
+  };
+  variant = variants[variant];
 
-    case "disabled":
-      variant =
-        "bg-foreground-extralight border-foreground-light text-foreground-light";
-      break;
-  }
   return (
     <div className="min-h-13.75">
       <button

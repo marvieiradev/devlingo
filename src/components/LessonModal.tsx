@@ -20,27 +20,16 @@ const LessonModal = ({
   const navigate = useNavigate();
 
   if (!isOpen) return null;
+  if (!selectedModuleId) return;
 
-  const style =
-    selectedModuleId === "html"
-      ? "primary"
-      : selectedModuleId === "css"
-      ? "secondary"
-      : "variant";
+  const moduleStyles = {
+    html: ["primary", "text-primary", "border-b-primary-light"],
+    css: ["secondary", "text-secondary", "border-b-secondary-light"],
+    js: ["variant", "text-variant", "border-b-variant-light"],
+  } as any;
 
-  const styleText =
-    selectedModuleId === "html"
-      ? "text-primary"
-      : selectedModuleId === "css"
-      ? "text-secondary"
-      : "text-variant";
-
-  const styleBorder =
-    selectedModuleId === "html"
-      ? "border-b-primary-light"
-      : selectedModuleId === "css"
-      ? "border-b-secondary-light"
-      : "border-b-variant-light";
+  const [style, styleText, styleBorder] =
+    moduleStyles[selectedModuleId] ?? moduleStyles.js;
 
   const selectedModule = lessonsData.find(
     (module) => module.id === selectedModuleId

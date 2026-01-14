@@ -50,7 +50,7 @@ const LessonFailureScreen = () => {
             <img
               src={Char}
               alt="Mascote"
-              className="h-65 xs:h-50 object-contain"
+              className="h-65 sm:h-75 object-contain"
             />
           </div>
           <h1 className="text-xl font-extrabold text-foreground-dark text-center">

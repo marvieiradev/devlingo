@@ -5,23 +5,13 @@ export const ProgressBar = ({
   style: string;
   progress: number;
 }) => {
-  let bg = "";
-  let detail = "";
+  const styleMap = {
+    primary: ["bg-primary", "border-primary-light/30"],
+    secondary: ["bg-secondary", "border-secondary-light/30"],
+    variant: ["bg-variant", "border-variant-light/30"],
+  } as any;
 
-  switch (style) {
-    case "primary":
-      bg = "bg-primary";
-      detail = "bg-primary-light/30";
-      break;
-    case "secondary":
-      bg = "bg-secondary";
-      detail = "bg-secondary-light/30";
-      break;
-    case "variant":
-      bg = "bg-variant";
-      detail = "bg-variant-light/30";
-      break;
-  }
+  const [bg = "", detail = ""] = styleMap[style] ?? [];
 
   return (
     <div

@@ -14,30 +14,20 @@ const LessonNode = ({ status, onClick, type, module }: LessonNodeProps) => {
   const isStar = type === "star";
   const isTrophy = type === "trophy";
 
-  const style = () => {
-    let styleModule;
-    switch (module) {
-      case "html":
-        styleModule = "bg-primary border-b-primary-dark text-default";
-        break;
-      case "css":
-        styleModule = "bg-secondary border-b-secondary-dark text-default";
-        break;
-      case "js":
-        styleModule = "bg-variant border-b-variant-dark text-default";
-        break;
-    }
-    return styleModule;
-  };
+  const style = {
+    html: "bg-primary border-b-primary-dark text-default",
+    css: "bg-secondary border-b-secondary-dark text-default",
+    js: "bg-variant border-b-variant-dark text-default",
+  }[module];
 
   return (
     <div className="relative flex flex-col items-center">
       <button
         onClick={isLocked ? undefined : onClick}
         disabled={isLocked}
-        className={`relative overflow-hidden flex items-center justify-center w-18 h-18 rounded-full drop-shadow-lg  border-b-6 ${
+        className={`relative overflow-hidden flex items-center justify-center w-18 h-18 rounded-full drop-shadow-lg border-b-6 cursor-pointer hover:scale-[105%] ${
           !isLocked
-            ? style()
+            ? style
             : "bg-foreground-extralight border-b-foreground-light text-foreground-light"
         }`}
       >

@@ -1,6 +1,3 @@
-import Char from "@/assets/images/char.svg";
-import Goal from "@/assets/images/goal.svg";
-
 import ImgChar1 from "@/assets/images/char/img-char-01.svg";
 import ImgChar2 from "@/assets/images/char/img-char-02.svg";
 import ImgChar3 from "@/assets/images/char/img-char-03.svg";
@@ -24,18 +21,12 @@ const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
 
   const { profile } = useUserProfile();
 
-  let imgChars = [];
-  switch (module) {
-    case "html":
-      imgChars.push(ImgChar1, ImgChar2);
-      break;
-    case "css":
-      imgChars.push(ImgChar3, ImgChar4);
-      break;
-    case "js":
-      imgChars.push(ImgChar5, ImgChar6);
-      break;
-  }
+  const imgChars =
+    {
+      html: [ImgChar1, ImgChar2],
+      css: [ImgChar3, ImgChar4],
+      js: [ImgChar5, ImgChar6],
+    }[module] ?? [];
 
   const mapUnitToLessonId = (unitId: number): string | null => {
     const lessonModule = lessonsData.find((m) => m.id === module);
