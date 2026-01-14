@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { HiMiniXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { lessonsData } from "@/mocks/lessonsData";
 
@@ -99,7 +99,7 @@ const LessonModal = ({
               aria-label="Fechar"
               className="absolute top-3 right-3 text-default/90 hover:text-default transition cursor-pointer"
             >
-              <X className="w-7 h-7" />
+              <HiMiniXMark className="w-8 h-8" />
             </button>
           </div>
         </div>

@@ -1,5 +1,13 @@
 import Char from "@/assets/images/char.svg";
 import Goal from "@/assets/images/goal.svg";
+
+import ImgChar1 from "@/assets/images/char/img-char-01.svg";
+import ImgChar2 from "@/assets/images/char/img-char-02.svg";
+import ImgChar3 from "@/assets/images/char/img-char-03.svg";
+import ImgChar4 from "@/assets/images/char/img-char-04.svg";
+import ImgChar5 from "@/assets/images/char/img-char-05.svg";
+import ImgChar6 from "@/assets/images/char/img-char-06.svg";
+
 import LessonNode from "./LessonNode";
 import { useState } from "react";
 import LessonModal from "./LessonModal";
@@ -15,6 +23,19 @@ const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
   const { completedLessons } = useCompletedLessons();
 
   const { profile } = useUserProfile();
+
+  let imgChars = [];
+  switch (module) {
+    case "html":
+      imgChars.push(ImgChar1, ImgChar2);
+      break;
+    case "css":
+      imgChars.push(ImgChar3, ImgChar4);
+      break;
+    case "js":
+      imgChars.push(ImgChar5, ImgChar6);
+      break;
+  }
 
   const mapUnitToLessonId = (unitId: number): string | null => {
     const lessonModule = lessonsData.find((m) => m.id === module);
@@ -89,9 +110,9 @@ const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
           />
 
           <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-24">
-            <div className="w-32 h-32 animate-float">
+            <div className="w-36 animate-float">
               <img
-                src={Char}
+                src={imgChars[0]}
                 alt="Mascote"
                 className="w-full h-full object-contain"
               />
@@ -138,9 +159,9 @@ const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
           />
 
           <div className="absolute right-55 top-1/2 -translate-y-1/2 translate-x-24">
-            <div className="w-28 h-28 animate-float">
+            <div className="w-36 animate-float">
               <img
-                src={Goal}
+                src={imgChars[1]}
                 alt="Meta"
                 className="w-full h-full object-contain"
               />

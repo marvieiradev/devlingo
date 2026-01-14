@@ -1,4 +1,4 @@
-import Char from "@/assets/images/char.svg";
+import Char from "@/assets/images/char/img-char-07.svg";
 import Button from "@/components/Button";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCircleXmark } from "react-icons/fa6";
@@ -43,22 +43,25 @@ const LessonFailureScreen = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center max-w-3xl mx-auto">
-      <div className="w-full max-w-2xl px-4 sm:px-0">
-        <div className="flex justify-center">
-          <img
-            src={Char}
-            alt="Mascote"
-            className="w-24 h-24 sm:w-28 sm:h-28 object-contain"
-          />
+    <div className="min-h-screen bg-white flex items-center justify-between max-w-3xl mx-auto">
+      <div className="w-full px-4 sm:px-0 gap-10">
+        <div className="h-1/2">
+          <div className="flex justify-center">
+            <img
+              src={Char}
+              alt="Mascote"
+              className="h-65 xs:h-50 object-contain"
+            />
+          </div>
+          <h1 className="text-xl font-extrabold text-foreground-dark text-center">
+            Você quase conseguiu!
+          </h1>
+          <p className="mt-2 text-xl text-center font-semibold text-foreground">
+            Continue praticando para melhorar
+          </p>
         </div>
-        <h1 className="mt-6 text-4xl font-extrabold text-foreground-dark text-center">
-          Você quase conseguiu!
-        </h1>
-        <p className="mt-2 text-center text-gray-500">
-          Continue praticando para melhorar
-        </p>
-        <div className="mt-10 flex items-stretch gap-2 justify-center">
+
+        <div className="h-1/2 mt-10 flex items-stretch gap-2 justify-center">
           <div className="w-25 h-20 p-1 pt-1 bg-success rounded-xl flex flex-col justify-between gap-1">
             <span className="text-center text-default font-bold text-sm">
               CORRETAS

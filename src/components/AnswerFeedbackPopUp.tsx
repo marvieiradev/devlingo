@@ -1,4 +1,5 @@
-import { Check, X } from "lucide-react";
+import { HiMiniXMark } from "react-icons/hi2";
+import { IoMdCheckmark } from "react-icons/io";
 import Button from "./Button";
 
 type FeedbackType = "correct" | "incorrect";
@@ -22,7 +23,7 @@ const AnswerFeedbackPopUp = ({
 
   const bg = isSuccess ? "bg-success-extralight" : "bg-error-light";
   const text = isSuccess ? "text-success-dark" : "text-error-dark";
-  const Icon = isSuccess ? Check : X;
+  const Icon = isSuccess ? IoMdCheckmark : HiMiniXMark;
   const successPhrase = ["Na mosca!", "Muito bem!", "Parabéns!", "Excelente!"];
   const errorPhrase = [
     "Incorreto!",

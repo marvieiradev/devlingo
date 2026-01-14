@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { HiMiniXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useLocation, useParams } from "react-router";
 import { lessonsData } from "@/mocks/lessonsData";
@@ -221,7 +221,7 @@ const LessonScreen = () => {
             aria-label="Fechar"
             onClick={() => navigate("/", { replace: true })}
           >
-            <X className="w-6 h-6" />
+            <HiMiniXMark className="w-7 h-7" />
           </button>
 
           <div className="flex-1 px-6">

@@ -1,4 +1,4 @@
-import Char from "@/assets/images/char.svg";
+import Char from "@/assets/images/char/img-char-08.svg";
 import Button from "@/components/Button";
 import { BsLightningChargeFill } from "react-icons/bs";
 import { LuClock4 } from "react-icons/lu";
@@ -19,17 +19,18 @@ const LessonSuccessScreen = () => {
   return (
     <div className="min-h-screen bg-default flex items-center justify-center max-w-3xl mx-auto">
       <div className="flex flex-col items-center">
-        <div>
+        <div className="h-1/2">
           <img
             src={Char}
             alt="Mascote"
-            className="w-28 h-28 sm:w-32 sm:h-32 object-contain"
+            className="h-65 xs:h-50 object-contain"
           />
+          <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold text-warning text-center">
+            Lição concluída!
+          </h1>
         </div>
-        <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold text-warning text-center">
-          Lição concluída!
-        </h1>
-        <div className="mt-10 flex items-stretch gap-2">
+
+        <div className="h-1/2 mt-10 flex items-stretch gap-2">
           <div className="w-25 h-20 p-1 pt-1 bg-warning rounded-xl flex flex-col justify-between gap-1">
             <span className="text-center text-default font-bold text-sm">
               TOTAL DE XP
