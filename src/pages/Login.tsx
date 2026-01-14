@@ -28,24 +28,24 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-400 to-indigo-400 p-4 max-w-3xl mx-auto">
-      <div className="bg-white/95 w-full max-w-md rounded-2xl shadow-2xl p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-800">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-primary to-secondary p-4 mx-auto">
+      <div className="bg-default/95 w-full max-w-md rounded-2xl shadow-2xl p-8">
+        <h1 className="text-2xl font-bold text-center text-foreground-dark">
           Bem-vindo de volta!
         </h1>
-        <p className="text-center text-gray-500 mt-1">
+        <p className="text-center text-foreground mt-1">
           Entre na sua conta para continuar
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
           <div className="flex flex-col gap-1">
-            <label className="text-gray-700">Email</label>
+            <label className="text-foreground">Email</label>
             <input
               type="email"
               placeholder="seu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full px-4 py-3 rounded-lg border border-foreground-extralight focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
@@ -57,30 +57,32 @@ const Login = () => {
               placeholder="********"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full px-4 py-3 rounded-lg border border-foreground-extralight focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-3 bg-blue-400 hover:bg-indigo-400 transition rounded-lg text-white font-semibold text-center cursor-pointer"
-          >
-            Entrar
-          </button>
+          <div className="min-h-13.75">
+            <button
+              type="submit"
+              className="w-full bg-primary border-primary-dark text-default hover:border-none hover:transform hover:translate-y-1 shrink-0 px-4 sm:px-8 py-3 border-b-4 rounded-xl font-semibold uppercase text-center cursor-pointer"
+            >
+              Entrar
+            </button>
+          </div>
         </form>
 
         <div className="flex items-center gap-3 my-6">
-          <span className="flex-1 h-px bg-gray-300" />
-          <span className="text-gray-500 text-sm">ou</span>
-          <span className="flex-1 h-px bg-gray-300" />
+          <span className="flex-1 h-px bg-foreground-light" />
+          <span className="text-foreground text-sm">ou</span>
+          <span className="flex-1 h-px bg-foreground-light" />
         </div>
 
-        <p className="mt-6 text-center text-gray-600">
+        <p className="mt-6 text-center text-foreground">
           Não tem uma conta?{" "}
           <Link
             to="/signup"
-            className="text-blue-400 font-medium hover:underline"
+            className="text-primary font-medium hover:underline"
           >
             Cadastre-se
           </Link>
