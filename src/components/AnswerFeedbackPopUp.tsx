@@ -38,12 +38,11 @@ const AnswerFeedbackPopUp = ({
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-50 "
+      className="fixed inset-x-0 bottom-0 z-50 animate-slide-up"
       role="status"
       aria-live="polite"
     >
       <div className="mx-auto max-w-3xl">
-        <div className={`${bg} h-2`} />
         <div
           className={`w-full ${bg} ${text} px-8 py-4 pb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6`}
         >

@@ -192,4 +192,17 @@
   .animate-shake {
     animation: shake 3s infinite;
   }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(300px);
+    }
+    to {
+      transform: translateY(0px);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.25s;
+  }
 }

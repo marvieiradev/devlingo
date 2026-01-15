@@ -48,7 +48,7 @@ const Header = () => {
             <button
               type="button"
               onClick={handleExitClick}
-              className="flex items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer"
+              className="items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer hidden sm:flex"
             >
               <ImExit className="w-5 h-5" />
               <span>Sair</span>

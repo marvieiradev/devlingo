@@ -10,6 +10,7 @@ import { PiBatteryChargingFill } from "react-icons/pi";
 import Button from "@/components/Button";
 import { updateUserProfile } from "@/services/updateCurrentModule";
 import ProgressBar from "@/components/ProgressBar";
+import LoadingScreen from "@/components/LoadingScreen";
 
 interface LessonModuleState {
   moduleId: string;
@@ -33,6 +34,7 @@ const LessonScreen = () => {
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [lives, setLives] = useState<number>(3);
+  const [loading, setLoading] = useState(false);
 
   const lessonModule = lessonsData.find((m) => m.id === moduleId);
   const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
@@ -135,8 +137,12 @@ const LessonScreen = () => {
       setSelected(null);
       setIsCorrect(null);
     } else {
+      console.log(loading);
+
       if (correctAnswers === totalQuestions) {
         if (user?.id) {
+          setLoading(true);
+          console.log(loading);
           try {
             const result = await saveLessonsScore({
               userId: user?.id,
@@ -189,8 +195,11 @@ const LessonScreen = () => {
     }
   };
 
+  if (loading) {
+    return <LoadingScreen isFadingOut={true} />;
+  }
   return (
-    <div className="min-h-screen bg-default max-w-3xl mx-auto">
+    <div className="min-h-screen bg-default max-w-3xl mx-auto ">
       <div className="sticky top-0 z-30 bg-default">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <button
@@ -211,7 +220,6 @@ const LessonScreen = () => {
           </div>
         </div>
       </div>
-
       <div className="max-w-3xl mx-auto px-4 py-8">
         <h1 className="text-xl md:text-3xl font-bold text-foreground-dark mb-8">
           {currentQuestion.question}
@@ -229,7 +237,7 @@ const LessonScreen = () => {
                   isSelected
                     ? `${bg} border-2 ${border} border-b-4`
                     : "bg-default  border-2 border-foreground-extralight hover:bg-foreground-extralight/50 border-b-4"
-                }${clicked ? " opacity-75 cursor-not-allowed" : ""}`}
+                }${clicked || loading ? " opacity-75 cursor-not-allowed" : ""}`}
               >
                 <span className="text-foreground-dark">{label}</span>
               </button>

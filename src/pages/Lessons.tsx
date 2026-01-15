@@ -3,6 +3,7 @@ import LessonsPath from "@/components/LessonsPath";
 import { useEffect, useRef, useState } from "react";
 import { lessonsData } from "@/mocks/lessonsData";
 import Separator from "@/components/Separator";
+import Footer from "@/components/Footer";
 
 export const Lessons = () => {
   const sectionsRef = useRef<HTMLElement[]>([]);
@@ -33,7 +34,7 @@ export const Lessons = () => {
 
   return (
     <div className="min-h-screen max-w-3xl mx-auto">
-      <div className="sticky top-0 z-30 bg-transparent">
+      <div className="sticky top-0 z-30 bg-default">
         <Header />
         <div className="w-full">
           <div className="mx-auto max-w-6xl px-4">
@@ -88,6 +89,9 @@ export const Lessons = () => {
         >
           <LessonsPath module="js" />
         </section>
+      </div>
+      <div className="sticky bottom-0 z-30 bg-default sm:hidden">
+        <Footer />
       </div>
     </div>
   );

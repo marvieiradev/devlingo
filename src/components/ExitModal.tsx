@@ -28,14 +28,14 @@ const ExitModal = ({ isOpen, onClose }: LessonModalProps) => {
               <img
                 src={Char}
                 alt="Mascote"
-                className="h-45 sm:h-65 object-contain animate-semirotate"
+                className="h-45 sm:h-65 object-contain"
               />
               <h3 className="text-2xl font-bold tracking-wide text-center">
-                {profile?.name}, deseja fazer logout?
+                {profile?.name}, deseja sair do devlingo?
               </h3>
               <div className="flex gap-4 mt-10 mb-4 mx-auto items-center justify-around w-full min-h-13.75">
-                <Button variant="error" text="Não" action={() => onClose()} />
-                <Button variant="success" text="Sim" action={() => logout()} />
+                <Button variant="error" text="Ficar" action={() => onClose()} />
+                <Button variant="success" text="Sair" action={() => logout()} />
               </div>
             </div>
             <button
