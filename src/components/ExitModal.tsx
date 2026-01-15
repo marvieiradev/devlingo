@@ -2,17 +2,16 @@ import { HiMiniXMark } from "react-icons/hi2";
 import Char from "@/assets/images/char/img-char-07.svg";
 import Button from "./Button";
 import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 interface LessonModalProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedUnitId?: number;
-  selectedModuleId?: string;
-  completed: boolean;
 }
 
 const ExitModal = ({ isOpen, onClose }: LessonModalProps) => {
   const { logout } = useAuth();
+  const { profile } = useUserProfile();
 
   if (!isOpen) return null;
 
@@ -32,7 +31,7 @@ const ExitModal = ({ isOpen, onClose }: LessonModalProps) => {
                 className="h-45 sm:h-65 object-contain animate-semirotate"
               />
               <h3 className="text-2xl font-bold tracking-wide text-center">
-                Deseja fazer logout?
+                {profile?.name}, deseja fazer logout?
               </h3>
               <div className="flex gap-4 mt-10 mb-4 mx-auto items-center justify-around w-full min-h-13.75">
                 <Button variant="error" text="Não" action={() => onClose()} />

@@ -56,11 +56,7 @@ const Header = () => {
           )}
         </div>
       </div>
-      <ExitModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        completed={false}
-      />
+      <ExitModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 };
