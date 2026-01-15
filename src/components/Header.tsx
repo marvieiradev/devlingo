@@ -4,10 +4,17 @@ import { PiBatteryChargingFill, PiFireFill } from "react-icons/pi";
 import { TbDiamondFilled } from "react-icons/tb";
 import { FaLaptopCode } from "react-icons/fa6";
 import { ImExit } from "react-icons/im";
+import { useState } from "react";
+import ExitModal from "./ExitModal";
 
 const Header = () => {
-  const { logout, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { profile, loading } = useUserProfile();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleExitClick = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <header className="w-full bg-default max-w-3xl mx-auto">
@@ -40,7 +47,7 @@ const Header = () => {
           {isAuthenticated && (
             <button
               type="button"
-              onClick={logout}
+              onClick={handleExitClick}
               className="flex items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer"
             >
               <ImExit className="w-5 h-5" />
@@ -49,6 +56,11 @@ const Header = () => {
           )}
         </div>
       </div>
+      <ExitModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        completed={false}
+      />
     </header>
   );
 };

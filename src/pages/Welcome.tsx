@@ -11,7 +11,7 @@ export const Welcome = () => {
           <img
             src={Char}
             alt="Mascote"
-            className="h-65 xs:h-75 object-contain"
+            className="h-65 xs:h-75 object-contain animate-float"
           />
           <h1 className="mt-6 text-3xl sm:text-4xl leading-12 font-bold bg-linear-to-r from-primary-dark via-primary to-secondary inline-block text-transparent bg-clip-text text-center">
             Bem Vindo ao DevLingo!
