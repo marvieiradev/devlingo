@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="12.4765mm" height="10.6614mm" version="1.0" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1970.07 1683.46"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#FF4B4B;stroke-width:208.89;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil2 {fill:none}
+    .fil3 {fill:none;fill-rule:nonzero}
+    .fil1 {fill:#AA572A}
+    .fil0 {fill:#FFC800}
+   ]]>
+  </style>
+    <clipPath id="id0">
+     <path d="M975 148.11l733.87 498.28 0 1037.07 -1447.68 0 0 -1064.31 713.81 -471.04z"/>
+    </clipPath>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2298264140688">
+   <polygon class="fil0" points="975,148.11 1708.87,646.39 1708.87,1683.46 261.19,1683.46 261.19,619.15 "/>
+   <g style="clip-path:url(#id0)">
+    <g>
+     <rect class="fil1" x="732.63" y="1003.38" width="504.8" height="1041.95" rx="252.4" ry="325.09"/>
+    </g>
+   </g>
+   <polygon class="fil2" points="975,148.11 1708.87,646.39 1708.87,1683.46 261.19,1683.46 261.19,619.15 "/>
+   <polyline class="fil3 str0" points="104.44,711.75 985.04,104.44 1865.62,711.75 "/>
+  </g>
+ </g>
+</svg>

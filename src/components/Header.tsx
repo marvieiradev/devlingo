@@ -3,9 +3,9 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { PiBatteryChargingFill, PiFireFill } from "react-icons/pi";
 import { TbDiamondFilled } from "react-icons/tb";
 import { FaLaptopCode } from "react-icons/fa6";
-import { ImExit } from "react-icons/im";
 import { useState } from "react";
 import ExitModal from "./ExitModal";
+import Close from "@/assets/images/icons/close.svg";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
@@ -26,10 +26,10 @@ const Header = () => {
           <div className="h-6 w-px bg-default" />
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="w-full justify-evenly flex items-center gap-5 xs:text-lg">
           <div className="flex items-center gap-2">
             <PiFireFill className="w-6 h-6 sm:w-8 sm:h-8 text-fire-icon" />
-            <span className="font-semibold text-fire-icon">99</span>
+            <span className="font-semibold text-fire-icon">99+</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -41,20 +41,19 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <PiBatteryChargingFill className="w-6 h-6 sm:w-8 sm:h-8 text-batery-icon" />
-            <span className="font-semibold text-batery-icon">99</span>
+            <span className="font-semibold text-batery-icon">99+</span>
           </div>
-
-          {isAuthenticated && (
-            <button
-              type="button"
-              onClick={handleExitClick}
-              className="items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer hidden sm:flex"
-            >
-              <ImExit className="w-5 h-5" />
-              <span>Sair</span>
-            </button>
-          )}
         </div>
+        {isAuthenticated && (
+          <button
+            type="button"
+            onClick={handleExitClick}
+            className="items-center gap-2 text-primary border-primary hover:text-secondary font-medium cursor-pointer hidden sm:flex hover:scale-[110%]"
+          >
+            <span>Sair</span>
+            <img src={Close} alt="" className="w-7 h-7" />
+          </button>
+        )}
       </div>
       <ExitModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>

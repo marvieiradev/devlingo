@@ -30,19 +30,32 @@ const ExitModal = ({ isOpen, onClose }: LessonModalProps) => {
                 alt="Mascote"
                 className="h-45 sm:h-65 object-contain"
               />
-              <h3 className="text-2xl font-bold tracking-wide text-center">
-                {profile?.name}, deseja sair do devlingo?
+              <h3 className="text-xl sm:text-2xl font-bold tracking-wide text-center">
+                {profile?.name}, não vá embora ainda, fique mais um pouco!
               </h3>
-              <div className="flex gap-4 mt-10 mb-4 mx-auto items-center justify-around w-full min-h-13.75">
-                <Button variant="error" text="Ficar" action={() => onClose()} />
-                <Button variant="success" text="Sair" action={() => logout()} />
+              <div className="flex flex-col gap-2 mt-10 mb-4 mx-auto items-center justify-around w-full min-h-13.75">
+                <div className="w-full">
+                  <Button
+                    variant="success"
+                    text="Ficar"
+                    action={() => onClose()}
+                  />
+                </div>
+
+                <div className="w-full">
+                  <Button
+                    variant="disabled"
+                    text="Sair"
+                    action={() => logout()}
+                  />
+                </div>
               </div>
             </div>
             <button
               type="button"
               onClick={onClose}
               aria-label="Fechar"
-              className="absolute top-3 right-3 text-default/90 hover:text-default transition cursor-pointer"
+              className="absolute top-3 right-3 text-foreground-light hover:text-foreground-dark transition cursor-pointer"
             >
               <HiMiniXMark className="w-8 h-8" />
             </button>
