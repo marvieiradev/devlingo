@@ -61,7 +61,7 @@ export const Lessons = () => {
           </div>
         </div>
       </div>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden bg-default">
         <section
           ref={(el) => {
             if (el) sectionsRef.current[0] = el;

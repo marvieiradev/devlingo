@@ -31,7 +31,7 @@ export const Welcome = () => {
           <Button
             variant="signup"
             text=" Criar conta"
-            action={() => () => navigate("/signup")}
+            action={() => navigate("/signup")}
           />
         </div>
       </div>

@@ -71,7 +71,7 @@ const LessonsPath = ({ module }: { module: "html" | "css" | "js" }) => {
   };
 
   return (
-    <div className="relative w-full flex justify-center py-8 max-w-3xl mx-auto">
+    <div className="relative w-full flex justify-center py-8 max-w-3xl mx-auto bg-default">
       <div className="flex flex-col gap-4">
         <LessonNode
           status={getUnitStatus(1)}
