@@ -53,7 +53,7 @@ const Footer = () => {
           onMouseLeave={() => setMenuIsOpen(false)}
         >
           <div
-            className="flex justify-start items-center p-2 gap-2 border-b-2  border-b-foreground-light/65 w-full cursor-pointer"
+            className="flex justify-start items-center p-2 py-4 gap-2 border-b-2  border-b-foreground-light/65 w-full cursor-pointer"
             onClick={() => setMenuIsOpen(false)}
           >
             <img src={Profile} className="w-7 h-7" alt="" />
@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
 
           <div
-            className="flex justify-start items-center p-2 gap-2 border-b-2  border-b-foreground-light/65 w-full cursor-pointer"
+            className="flex justify-start items-center p-2 py-4 gap-2 border-b-2  border-b-foreground-light/65 w-full cursor-pointer"
             onClick={handleExitClick}
           >
             <img src={Close} className="w-7 h-7" alt="" />

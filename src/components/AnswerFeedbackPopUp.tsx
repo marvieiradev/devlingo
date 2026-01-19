@@ -1,6 +1,7 @@
 import { HiMiniXMark } from "react-icons/hi2";
 import { IoMdCheckmark } from "react-icons/io";
 import Button from "./Button";
+import { useEffect, useState } from "react";
 
 type FeedbackType = "correct" | "incorrect";
 
@@ -31,10 +32,15 @@ const AnswerFeedbackPopUp = ({
     "Tente novamente!",
     "Não desista!",
   ];
+  const [phrase, setPhrase] = useState("");
 
-  const phraseToShow = isSuccess
-    ? successPhrase[Math.floor(Math.random() * successPhrase.length)]
-    : errorPhrase[Math.floor(Math.random() * errorPhrase.length)];
+  useEffect(() => {
+    if (isSuccess)
+      setPhrase(
+        successPhrase[Math.floor(Math.random() * successPhrase.length)]
+      );
+    else setPhrase(errorPhrase[Math.floor(Math.random() * errorPhrase.length)]);
+  }, []);
 
   return (
     <div
@@ -56,7 +62,7 @@ const AnswerFeedbackPopUp = ({
                 <Icon size={20} />
               </span>
               <span className="font-semibold  text-xl sm:text-2xl">
-                {phraseToShow}
+                {phrase}
               </span>
             </div>
             {!isSuccess && (

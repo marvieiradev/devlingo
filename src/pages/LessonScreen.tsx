@@ -147,12 +147,9 @@ const LessonScreen = () => {
       setSelected(null);
       setIsCorrect(null);
     } else {
-      console.log(loading);
-
       if (correctAnswers === totalQuestions) {
         if (user?.id) {
           setLoading(true);
-          console.log(loading);
           try {
             const result = await saveLessonsScore({
               userId: user?.id,
