@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { lessonsData } from "@/mocks/lessonsData";
 import Separator from "@/components/Separator";
 import Footer from "@/components/Footer";
+import { LuNotebookText } from "react-icons/lu";
 
 export const Lessons = () => {
   const sectionsRef = useRef<HTMLElement[]>([]);
@@ -39,15 +40,22 @@ export const Lessons = () => {
         <div className="w-full">
           <div className="mx-auto max-w-6xl px-4">
             <div
-              className={`rounded-xl text-default border-b-5  shadow-lg ${header.color}`}
+              className={`flex justify-between items-center w-full rounded-xl text-default border-b-5 shadow-lg ${header.color}`}
             >
-              <div className="px-6 py-6 gap-2">
+              <div className="pl-4 py-4 sm:pl-6 sm:px-6 sm:py-6 gap-2">
                 <p className="uppercase text-xs tracking-widest opacity-90">
                   Começar unidade
                 </p>
                 <h2 className="mt-1 text-xl sm:text-2xl font-bold tracking-wide">
                   Fundamentos de {header.text}
                 </h2>
+              </div>
+              <div className="pr-4 py-4 sm:pr-6 sm:px-6 sm:py-6 gap-2">
+                <div
+                  className={`border-2 border-b-4 p-2 rounded-lg ${header.color}`}
+                >
+                  <LuNotebookText className="w-6 h-6 sm:w-7 sm:h-7" />
+                </div>
               </div>
             </div>
           </div>
