@@ -10,7 +10,6 @@ import { PiBatteryChargingFill } from "react-icons/pi";
 import Button from "@/components/Button";
 import { updateUserProfile } from "@/services/updateCurrentModule";
 import ProgressBar from "@/components/ProgressBar";
-import LoadingScreen from "@/components/LoadingScreen";
 
 interface LessonModuleState {
   moduleId: string;
@@ -208,7 +207,11 @@ const LessonScreen = () => {
   };
 
   if (loading) {
-    return <LoadingScreen isFadingOut={true} />;
+    return (
+      <div className="min-h-screen bg-default max-w-3xl mx-auto text-foreground-light flex justify-center items-center">
+        <span className="text-[60px]">...</span>
+      </div>
+    );
   }
   return (
     <div className="min-h-screen bg-default max-w-3xl mx-auto ">

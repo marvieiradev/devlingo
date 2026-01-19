@@ -41,7 +41,7 @@ const LessonSuccessScreen = () => {
             <span className="text-center text-default font-bold text-sm">
               TOTAL DE XP
             </span>
-            <div className=" bg-default h-12 rounded-lg text-warning flex items-center justify-center gap-2 px-4">
+            <div className=" bg-default h-12 rounded-lg text-warning flex items-center justify-center gap-2 px-1">
               <BsLightningChargeFill className="h-5 w-5" />
               <span className="text-xl font-bold">{xpEarned}</span>
             </div>
@@ -51,7 +51,7 @@ const LessonSuccessScreen = () => {
             <span className="text-center text-default font-bold text-sm">
               ÓTIMA
             </span>
-            <div className="bg-default h-12 rounded-lg text-success flex items-center justify-center gap-2 px-2">
+            <div className="bg-default h-12 rounded-lg text-success flex items-center justify-center gap-2 px-1">
               <TbTargetArrow className="h-5 w-5" />
               <span className="text-xl font-bold">{accuracy}%</span>
             </div>
@@ -61,7 +61,7 @@ const LessonSuccessScreen = () => {
             <span className="text-center text-default font-bold text-sm">
               SUPER ÁGIL
             </span>
-            <div className="bg-default h-12 rounded-lg text-primary flex items-center justify-center gap-2 px-4">
+            <div className="bg-default h-12 rounded-lg text-primary flex items-center justify-center gap-2 px-1">
               <LuClock4 className="h-5 w-5" />
               <span className="text-xl font-bold">{totalTime}</span>
             </div>
