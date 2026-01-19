@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useLocation, useParams } from "react-router";
@@ -35,9 +35,20 @@ const LessonScreen = () => {
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [lives, setLives] = useState<number>(3);
   const [loading, setLoading] = useState(false);
+  const [seconds, setSeconds] = useState(0);
 
   const lessonModule = lessonsData.find((m) => m.id === moduleId);
   const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   const saveCurrentModule = () => {
     if (lesson?.unitId !== 10) return moduleId;
@@ -172,6 +183,7 @@ const LessonScreen = () => {
               lessonId: lesson.id,
               xpEarned: lesson.xpReward,
               accuracy: 100,
+              time: seconds,
             },
           });
         }

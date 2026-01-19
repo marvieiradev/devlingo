@@ -8,13 +8,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 interface LessonSuccessState {
   xpEarned?: number;
   accuracy?: number;
+  time: number;
 }
 
 const LessonSuccessScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { xpEarned, accuracy } = (location.state as LessonSuccessState) || {};
+  const { xpEarned, accuracy, time } =
+    (location.state as LessonSuccessState) || {};
+
+  const mm = String(Math.floor((time % 3600) / 60));
+  const ss = String(Math.floor(time % 60)).padStart(2, "0");
+  const totalTime = `${mm}:${ss}`;
 
   return (
     <div className="min-h-screen bg-default flex items-center justify-center max-w-3xl mx-auto">
@@ -46,7 +52,7 @@ const LessonSuccessScreen = () => {
               ÓTIMA
             </span>
             <div className="bg-default h-12 rounded-lg text-success flex items-center justify-center gap-2 px-2">
-              <TbTargetArrow className="h-6 w-6" />
+              <TbTargetArrow className="h-5 w-5" />
               <span className="text-xl font-bold">{accuracy}%</span>
             </div>
           </div>
@@ -57,7 +63,7 @@ const LessonSuccessScreen = () => {
             </span>
             <div className="bg-default h-12 rounded-lg text-primary flex items-center justify-center gap-2 px-4">
               <LuClock4 className="h-5 w-5" />
-              <span className="text-xl font-bold">1:30</span>
+              <span className="text-xl font-bold">{totalTime}</span>
             </div>
           </div>
         </div>
