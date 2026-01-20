@@ -18,8 +18,6 @@ const AnswerFeedbackPopUp = ({
   correctOption,
   onContinue,
 }: AnswerFeedbackPopUpProps) => {
-  if (!open) return null;
-
   const isSuccess = type === "correct";
 
   const bg = isSuccess ? "bg-success-extralight" : "bg-error-light";
@@ -41,6 +39,8 @@ const AnswerFeedbackPopUp = ({
       );
     else setPhrase(errorPhrase[Math.floor(Math.random() * errorPhrase.length)]);
   }, []);
+
+  if (!open) return null;
 
   return (
     <div
