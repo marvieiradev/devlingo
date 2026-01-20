@@ -52,7 +52,7 @@ export function useCompletedLessons(): UseCompletedLessonsResult {
         setCompletedLessons(ids);
       } catch (err) {
         const e = err instanceof Error ? err : new Error(String(err));
-        console.error("[useCompletedLessons] exceção", e);
+        //console.error("[useCompletedLessons] exceção", e);
         setError(e);
         setCompletedLessons([]);
       } finally {

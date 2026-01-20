@@ -10,6 +10,7 @@ import { PiBatteryChargingFill } from "react-icons/pi";
 import Button from "@/components/Button";
 import { updateUserProfile } from "@/services/updateCurrentModule";
 import ProgressBar from "@/components/ProgressBar";
+import { IoWarning } from "react-icons/io5";
 
 interface LessonModuleState {
   moduleId: string;
@@ -18,10 +19,10 @@ interface LessonModuleState {
 
 const LessonScreen = () => {
   const location = useLocation();
-  const { moduleId, styles } = (location.state as LessonModuleState) || {};
   const { user } = useAuth();
   const navigate = useNavigate();
   const { lessonId } = useParams();
+  const { moduleId, styles } = (location.state as LessonModuleState) || {};
 
   const [selected, setSelected] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -36,7 +37,9 @@ const LessonScreen = () => {
   const [loading, setLoading] = useState(false);
   const [seconds, setSeconds] = useState(0);
 
-  const lessonModule = lessonsData.find((m) => m.id === moduleId);
+  const lessonModule = lessonsData.find(
+    (m) => m.id === moduleId || lessonId!.split("-")[0]
+  );
   const lesson = lessonModule!.lessons.find((l) => l.id === lessonId);
 
   useEffect(() => {
@@ -70,11 +73,12 @@ const LessonScreen = () => {
   const [bg = "", border = ""] = styleMap[styles] ?? [];
 
   if (!lesson) {
-    console.warn("[Lesson] lesson not found", { lessonId });
+    //console.warn("[Lesson] lesson not found", { lessonId });
     return (
-      <div className="min-h-screen bg-default flex items-center justify-center">
+      <div className="min-h-screen bg-default flex flex-col items-center justify-center">
+        <IoWarning className="w-16 h-16 mb-4 text-error" />
         <div className="text-center">
-          <p className="text-foreground mb-4">Lição não encontrada</p>
+          <p className="text-foreground mb-8 text-2xl">Lição não encontrada</p>
           <Button
             variant="primary"
             text="Voltar"
@@ -116,22 +120,6 @@ const LessonScreen = () => {
     setWrongAnswers(nextWrong);
     setLives(nextLives);
 
-    if (nextWrong >= 3 && nextLives <= 0) {
-      setShowFeedbackPopUp(false);
-
-      navigate("/lesson-failure/", {
-        state: {
-          moduleId: moduleId,
-          lessonId: lesson.id,
-          correctAnswers: correctAnswers,
-          wrongAnswers: nextWrong,
-          totalQuestions,
-          styles,
-        },
-      });
-      return;
-    }
-
     setShowFeedbackPopUp(true);
   };
 
@@ -151,7 +139,7 @@ const LessonScreen = () => {
         if (user?.id) {
           setLoading(true);
           try {
-            const result = await saveLessonsScore({
+            await saveLessonsScore({
               userId: user?.id,
               lessonId: lesson.id,
               correctAnswers: correctAnswers,
@@ -159,21 +147,16 @@ const LessonScreen = () => {
               xpEarned: lesson.xpReward,
             });
 
-            const update = await updateUserProfile(user.id, {
+            await updateUserProfile(user.id, {
               current_module: saveCurrentModule(),
             });
 
-            console.debug("[Lesson] saved score successfully", result);
-            console.debug("[Lesson] saved current module successfully", update);
+            //console.debug("[Lesson] saved score successfully", result);
+            //console.debug("[Lesson] saved current module successfully", update);
           } catch (error) {
-            console.error("[Lesson] error saving score/navigating:", error);
+            //console.error("[Lesson] error saving score/navigating:", error);
+            return;
           }
-
-          console.debug("[Lesson] navigating to success", {
-            lessonId: lesson.id,
-            xpEarned: lesson.xpReward,
-            accuracy: 100,
-          });
           navigate("/lesson-success/", {
             state: {
               lessonId: lesson.id,
@@ -184,13 +167,6 @@ const LessonScreen = () => {
           });
         }
       } else {
-        console.debug("[Lesson] navigating to failure", {
-          lessonId: lesson.id,
-          correctAnswers,
-          wrongAnswers,
-          totalQuestions,
-        });
-
         navigate("/lesson-failure/", {
           state: {
             lessonId: lesson.id,
@@ -245,7 +221,7 @@ const LessonScreen = () => {
                 disabled={clicked}
                 key={label}
                 onClick={() => setSelected(idx)}
-                className={`w-full text-left rounded-2xl shadow-sm p-4 flex items-center justify-between $ ${
+                className={`w-full text-left rounded-2xl shadow-sm p-4 flex items-center justify-between font-semibold ${
                   isSelected
                     ? `${bg} border-2 ${border} border-b-4`
                     : "bg-default  border-2 border-foreground-extralight hover:bg-foreground-extralight/50 border-b-4"
