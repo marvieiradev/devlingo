@@ -25,10 +25,12 @@ const Signup = () => {
 
       const { error } = await signUp(name, email, senha);
       if (error) {
-        console.error("[SignUp] Erro ao criar conta:", error);
+        //console.error("[SignUp] Erro ao criar conta:", error);
+        return;
       }
     } catch (error) {
-      console.error("[SignUp] Exceção não tratada:", error);
+      //console.error("[SignUp] Exceção não tratada:", error);
+      return;
     } finally {
       setLoading(false);
     }

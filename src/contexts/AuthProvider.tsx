@@ -42,7 +42,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     if (error) {
-      console.error("Erro ao fazer login:", error);
+      alert("Erro ao fazer login: Usuário ou senha incorretos");
+      //console.error("Erro ao fazer login:", error);
       return { error };
     }
 
@@ -70,8 +71,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     if (error) {
-      console.error("Erro ao cadastrar usuário:", error);
-
+      alert("Erro de servidor: Falha ao cadastrar usuário:");
+      //console.error("Erro ao cadastrar usuário:", error);
       return { error };
     }
 

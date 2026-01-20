@@ -22,7 +22,7 @@ export async function insertLessonScore(
   params: SaveLessonScoreParams
 ): Promise<SaveLessonScoreResult> {
   try {
-    console.log("[insertLessonScore] início", params);
+    //console.log("[insertLessonScore] início", params);
 
     const { data, error } = await supabase
       .from("lesson_scores")
@@ -37,7 +37,7 @@ export async function insertLessonScore(
       .single();
 
     if (error) {
-      console.error("[insertLessonScore] erro", error);
+      //console.error("[insertLessonScore] erro", error);
       return { data: null, error: error as unknown as Error };
     }
 
@@ -46,7 +46,7 @@ export async function insertLessonScore(
     return { data: { scoreId: id }, error: null };
   } catch (err) {
     const error = err instanceof Error ? err : new Error(String(err));
-    console.error("[insertLessonScore] exceção", error);
+    //console.error("[insertLessonScore] exceção", error);
     return { data: null, error };
   }
 }
@@ -69,7 +69,7 @@ export async function updateLessonScore(
       .single();
 
     if (error) {
-      console.error("[updateLessonScore] erro", error);
+      //console.error("[updateLessonScore] erro", error);
       return { data: null, error: error as unknown as Error };
     }
 
@@ -78,7 +78,7 @@ export async function updateLessonScore(
     return { data: { scoreId: id }, error: null };
   } catch (err) {
     const error = err instanceof Error ? err : new Error(String(err));
-    console.error("[updateLessonScore] exceção", error);
+    //console.error("[updateLessonScore] exceção", error);
     return { data: null, error };
   }
 }
@@ -95,7 +95,7 @@ export async function saveLessonsScore(
       .limit(1);
 
     if (error) {
-      console.error("[saveLessonsScore] erro ao verificar existência", error);
+      //console.error("[saveLessonsScore] erro ao verificar existência", error);
       return { data: null, error: error as Error };
     }
 
@@ -117,10 +117,10 @@ export async function saveLessonsScore(
       .single();
 
     if (profileError) {
-      console.error(
+      /*console.error(
         "[saveLessonsScore] erro ao buscar perfil do usuário",
         profileError
-      );
+      );*/
       return { data: null, error: profileError as Error };
     }
 
@@ -135,14 +135,14 @@ export async function saveLessonsScore(
       .eq("id", params.userId);
 
     if (updateProfileError) {
-      console.error(
+      /*console.error(
         "[saveLessonsScore] erro ao atualizar total_xp do usuário",
         updateProfileError
-      );
+      );*/
       return { data: null, error: updateProfileError as Error };
     }
 
-    console.log("pontuação foi salva com sucesso");
+    //console.log("pontuação foi salva com sucesso");
     return {
       data: result.data,
       scoreId: result.data.scoreId,
@@ -150,7 +150,7 @@ export async function saveLessonsScore(
     };
   } catch (err) {
     const error = err instanceof Error ? err : new Error(String(err));
-    console.error("[saveLessonsScore] exceção", error);
+    //console.error("[saveLessonsScore] exceção", error);
     return { data: null, error };
   }
 }

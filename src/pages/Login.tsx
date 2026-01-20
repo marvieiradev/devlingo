@@ -23,7 +23,8 @@ const Login = () => {
       const from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
     } catch (err) {
-      console.error("Erro ao fazer login:", err);
+      alert("Erro ao fazer login");
+      //console.error("Erro ao fazer login:", err);
     }
   };
 
