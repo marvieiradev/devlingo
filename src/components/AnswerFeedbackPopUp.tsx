@@ -1,7 +1,7 @@
 import { HiMiniXMark } from "react-icons/hi2";
 import { IoMdCheckmark } from "react-icons/io";
 import Button from "./Button";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 type FeedbackType = "correct" | "incorrect";
 
@@ -23,22 +23,23 @@ const AnswerFeedbackPopUp = ({
   const bg = isSuccess ? "bg-success-extralight" : "bg-error-light";
   const text = isSuccess ? "text-success-dark" : "text-error-dark";
   const Icon = isSuccess ? IoMdCheckmark : HiMiniXMark;
-  const successPhrase = ["Na mosca!", "Muito bem!", "Parabéns!", "Excelente!"];
-  const errorPhrase = [
+  const SUCCESS_PHRASES = [
+    "Na mosca!",
+    "Muito bem!",
+    "Parabéns!",
+    "Excelente!",
+  ];
+  const ERROR_PHRASES = [
     "Incorreto!",
     "Quase lá!",
     "Tente novamente!",
     "Não desista!",
   ];
-  const [phrase, setPhrase] = useState("");
+  const phrase = useMemo(() => {
+    const phrases = isSuccess ? SUCCESS_PHRASES : ERROR_PHRASES;
 
-  useEffect(() => {
-    if (isSuccess)
-      setPhrase(
-        successPhrase[Math.floor(Math.random() * successPhrase.length)]
-      );
-    else setPhrase(errorPhrase[Math.floor(Math.random() * errorPhrase.length)]);
-  }, []);
+    return phrases[Math.floor(Math.random() * phrases.length)];
+  }, [isSuccess]);
 
   if (!open) return null;
 
